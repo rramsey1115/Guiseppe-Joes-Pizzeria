@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using GuiseppeJoes.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 
