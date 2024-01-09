@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
-using GuiseppeJoes.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

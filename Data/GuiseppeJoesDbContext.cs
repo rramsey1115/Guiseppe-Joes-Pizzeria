@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using GuiseppeJoes.Models;
 
-namespace HouseRules.Data;
+namespace GuiseppeJoes.Data;
 public class GuiseppeJoesDbContext : IdentityDbContext<IdentityUser>
 {
     private readonly IConfiguration _configuration;
