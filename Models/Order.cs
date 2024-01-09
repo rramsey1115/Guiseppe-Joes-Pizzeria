@@ -10,6 +10,7 @@ public class Order
     public Employee Employee { get; set; }
     [Required]
     public DateTime PlacedOnDate { get; set; }
+    public DateTime? CompletedOnDate { get; set; }
     [Required]
     public bool Delivery { get; set; }
     [Required]
