@@ -1,5 +1,4 @@
 using GuiseppeJoes.Data;
-using GuiseppeJoes.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +18,7 @@ public class PizzaController : ControllerBase
 
     [HttpGet("{id}")]
     [Authorize]
-    public IActionResult Get(int id)
+    public IActionResult GetPizza(int id)
     {
         try
         {
