@@ -30,7 +30,23 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
               <OrdersList loggedInUser={loggedInUser}/>
             </AuthorizedRoute>}>
           </Route>
-          <Route path="create">
+          <Route path="complete">
+            <Route path=":id" element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <CompleteOrder loggedInUser={loggedInUser}/>
+              </AuthorizedRoute>}
+            />
+          </Route>
+          <Route path="details">
+            <Route path=":id" element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <OrderDetails loggedInUser={loggedInUser}/>
+              </AuthorizedRoute>}
+            />
+          </Route>
+        </Route>
+
+        <Route path="create">
             <Route index element={
               <AuthorizedRoute loggedInUser={loggedInUser}>
                 <ChooseOrderType loggedInUser={loggedInUser}/>
@@ -46,21 +62,6 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
                 <CreateDineInOrder loggedInUser={loggedInUser}/>
               </AuthorizedRoute>} 
             />
-          </Route>
-          <Route path="complete">
-            <Route path=":id" element={
-              <AuthorizedRoute loggedInUser={loggedInUser}>
-                <CompleteOrder loggedInUser={loggedInUser}/>
-              </AuthorizedRoute>}
-            />
-          </Route>
-          <Route path="details">
-            <Route path=":id" element={
-              <AuthorizedRoute loggedInUser={loggedInUser}>
-                <OrderDetails loggedInUser={loggedInUser}/>
-              </AuthorizedRoute>}
-            />
-          </Route>
         </Route>
 
         <Route
