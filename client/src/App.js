@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { tryGetLoggedInUser } from "./managers/authManager";
 import { Spinner } from "reactstrap";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/navbar/NavBar";
 import ApplicationViews from "./components/ApplicationViews";
 
 function App() {
