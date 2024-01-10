@@ -1,8 +1,8 @@
-export const Home = () => {
+export const ChooseOrderType = () => {
     return(
     <div className="container">
         <div className="header">
-            <h1>Home</h1>
+            <h1>Choose Order Type</h1>
         </div>
         <div className="body">
 

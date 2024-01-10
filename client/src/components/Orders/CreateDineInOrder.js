@@ -1,8 +1,8 @@
-export const Home = () => {
+export const CreateDineInOrder = () => {
     return(
     <div className="container">
         <div className="header">
-            <h1>Home</h1>
+            <h1>Create Dine-In/Take-Out Order</h1>
         </div>
         <div className="body">
 

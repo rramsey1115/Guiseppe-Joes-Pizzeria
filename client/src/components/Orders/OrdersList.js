@@ -1,8 +1,8 @@
-export const Home = () => {
+export const OrdersList = () => {
     return(
     <div className="container">
         <div className="header">
-            <h1>Home</h1>
+            <h1>Orders List</h1>
         </div>
         <div className="body">
 
