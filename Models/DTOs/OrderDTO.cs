@@ -21,9 +21,19 @@ public class OrderDTO
         get
         {
             decimal total = 0;
-            OrderPizzas.Select(op => total += op.TotalCost);
+            
+            foreach(PizzaDTO pizza in OrderPizzas)
+            {
+                total += pizza.TotalCost;
+            }
+
+            if (Delivery==true) 
+            {
+                total += 5;
+            }
+
             total += Tip;
-            if (Delivery==true) {total += 5;}
+
             return total;
         }
     }

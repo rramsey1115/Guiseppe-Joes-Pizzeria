@@ -21,6 +21,8 @@ public class OrderController : ControllerBase
     [Authorize]
     public IActionResult Get()
     {
+        try
+        {
         return Ok(_dbContext.Orders
         .Include(o => o.OrderPizzas).ThenInclude(op => op.Size)
         .Include(o => o.OrderPizzas).ThenInclude(op => op.Sauce)
@@ -90,57 +92,99 @@ public class OrderController : ControllerBase
             }
         ).ToList()
         );
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Bad Request: {ex}");
+        }
     }
 
-    // [HttpGet("{id}")]
-    // [Authorize]
-    // public IActionResult GetById(int id)
-    // {
-    //     var found = _dbContext.Chores
-    //     .Include(c => c.ChoreCompletions).ThenInclude(cp => cp.UserProfile)
-    //     .Include(c => c.ChoreAssignments).ThenInclude(ca => ca.UserProfile)
-    //     .SingleOrDefault(c => c.Id == id);
+    [HttpGet("{id}")]
+    [Authorize]
+    public IActionResult GetById(int id)
+    {
+        try
+        {
+            var found = _dbContext.Orders
+            .Include(o => o.OrderPizzas).ThenInclude(op => op.Size)
+            .Include(o => o.OrderPizzas).ThenInclude(op => op.Sauce)
+            .Include(o => o.OrderPizzas).ThenInclude(op => op.Cheese)
+            .Include(o => o.OrderPizzas).ThenInclude(op => op.PizzaToppings).ThenInclude(pt => pt.Topping)
+            .Include(o => o.Employee)
+            .Include(o => o.Driver)
+            .SingleOrDefault(o => o.Id == id);
 
-    //     if (found == null)
-    //     {
-    //         return BadRequest("Matching chore.id not found");
-    //     }
+            if (found == null)
+            {
+                return BadRequest("Matching order.id not found");
+            }
 
-    //     return Ok(new ChoreDTO
-    //     {
-    //         Id = found.Id,
-    //         Name = found.Name,
-    //         Difficulty = found.Difficulty,
-    //         ChoreFrequencyDays = found.ChoreFrequencyDays,
-    //         ChoreAssignments = found.ChoreAssignments.Select(ca => new ChoreAssignmentDTO
-    //         {
-    //             Id = ca.Id,
-    //             UserProfileId = ca.UserProfileId,
-    //             UserProfile = new UserProfileDTO
-    //             {
-    //                 Id = ca.UserProfile.Id,
-    //                 FirstName = ca.UserProfile.FirstName,
-    //                 LastName = ca.UserProfile.LastName,
-    //                 Address = ca.UserProfile.Address
-    //             },
-    //             ChoreId = ca.ChoreId
-    //         }).ToList(),
-    //         ChoreCompletions = found.ChoreCompletions.OrderByDescending(cp => cp.CompletedOn).Select(cp => new ChoreCompletionDTO
-    //         {
-    //             Id = cp.Id,
-    //             UserProfileId = cp.UserProfileId,
-    //             UserProfile = new UserProfileDTO
-    //             {
-    //                 Id = cp.UserProfile.Id,
-    //                 FirstName = cp.UserProfile.FirstName,
-    //                 LastName = cp.UserProfile.LastName,
-    //                 Address = cp.UserProfile.Address
-    //             },
-    //             ChoreId = cp.ChoreId,
-    //             CompletedOn = cp.CompletedOn
-    //         }).ToList()
-    //     });
-    // }
+            return Ok(new OrderDTO
+            {
+                Id = found.Id,
+                EmployeeId = found.EmployeeId,
+                Employee = new UserProfileDTO 
+                {
+                    Id = found.Employee.Id,
+                    FirstName = found.Employee.FirstName,
+                    LastName = found.Employee.LastName
+                },
+                PlacedOnDate = found.PlacedOnDate,
+                CompletedOnDate = found.CompletedOnDate,
+                Delivery = found.Delivery,
+                Tip = found.Tip,
+                TableNumber = found.TableNumber,
+                Address = found.Address,
+                DriverId = found.DriverId,
+                Driver = found.Driver != null ? new UserProfileDTO
+                {
+                    Id = found.Driver.Id,
+                    FirstName = found.Driver.FirstName,
+                    LastName = found.Driver.LastName
+                } : null,
+                OrderPizzas = found.OrderPizzas.Select(op => new PizzaDTO
+                {
+                    Id = op.Id,
+                    SizeId = op.SizeId,
+                    Size = new SizeDTO
+                    {
+                        Id = op.Size.Id,
+                        Name = op.Size.Name,
+                        Price = op.Size.Price
+                    },
+                    CheeseId = op.CheeseId,
+                    Cheese = new CheeseDTO 
+                    {
+                        Id = op.Cheese.Id,
+                        Name = op.Cheese.Name
+                    },
+                    SauceId = op.SauceId,
+                    Sauce = new SauceDTO
+                    {
+                        Id = op.Sauce.Id,
+                        Name = op.Sauce.Name
+                    },
+                    OrderId = op.OrderId,
+                    PizzaToppings = op.PizzaToppings.Select(pt => new PizzaToppingDTO
+                    {
+                        Id = pt.Id,
+                        PizzaId = pt.PizzaId,
+                        ToppingId = pt.ToppingId,
+                        Topping = new ToppingDTO
+                        {
+                            Id = pt.Topping.Id,
+                            Name = pt.Topping.Name
+                        }
+                    }).ToList()
+                }).ToList()
+            });
+
+        }
+        catch (Exception ex)
+        {
+            return NotFound($"{ex}");
+        };
+    }
 
     // [HttpPost("{id}/{userId}/complete")]
     // [Authorize]
