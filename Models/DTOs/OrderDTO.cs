@@ -8,10 +8,11 @@ public class OrderDTO
     [ForeignKey("EmployeeId")]
     public UserProfileDTO Employee { get; set; }
     public DateTime PlacedOnDate { get; set; }
+     public DateTime? CompletedOnDate { get; set; }
     public bool Delivery { get; set; }
     public decimal Tip { get; set; }
     public int TableNumber { get; set; }
-    public string? DeliveryAddress { get; set; }
+    public string? Address { get; set; }
     public int? DriverId { get; set; }
     [ForeignKey("DriverId")]
     public UserProfileDTO? Driver { get; set; }
