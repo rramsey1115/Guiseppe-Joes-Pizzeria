@@ -47,6 +47,7 @@ return (
             </Collapse>
             <Button
             color="success"
+            size="sm"
             onClick={(e) => {
                 e.preventDefault();
                 setOpen(false);
@@ -63,7 +64,7 @@ return (
         <Nav navbar>
             <NavItem>
             <NavLink tag={RRNavLink} to="/login">
-                <Button color="success">Login</Button>
+                <Button color="success" size="sm">Login</Button>
             </NavLink>
             </NavItem>
         </Nav>

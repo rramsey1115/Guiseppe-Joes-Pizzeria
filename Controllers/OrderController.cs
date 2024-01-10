@@ -30,7 +30,7 @@ public class OrderController : ControllerBase
         .Include(o => o.OrderPizzas).ThenInclude(op => op.PizzaToppings).ThenInclude(pt => pt.Topping)
         .Include(o => o.Employee)
         .Include(o => o.Driver)
-        .OrderByDescending(o => o.PlacedOnDate)
+        .OrderBy(o => o.PlacedOnDate)
         .Select(o => new OrderDTO
             {
                 Id = o.Id,
