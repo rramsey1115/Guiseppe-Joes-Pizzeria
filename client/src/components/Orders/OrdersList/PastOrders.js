@@ -41,10 +41,10 @@ export const PastOrders = () => {
                     <th>Id</th>
                     <th>Type</th>
                     <th>Paid</th>
-                    <th>Date</th>
-                    <th>Time</th>
+                    <th>Placed On</th>
+                    <th></th>
                     <th>Details</th>
-                    <th>Completed</th>
+                    <th>Completed On</th>
                     <th></th>
                 </tr>
             </thead>
@@ -53,12 +53,12 @@ export const PastOrders = () => {
                     return(<tr key={o.id}>
                         <td>{o.id}</td>
                         <td>{o.delivery===true ? "Delivery" : o.tableNumber !== 10 ? "Dine-In" : "Take-Out" }</td>
-                        <td>{`$${o.totalCost}`}</td>
+                        <td>{`$${o.totalCost.toFixed(2)}`}</td>
                         <td>{getFormattedDate(o.placedOnDate)}</td>
                         <td>{getFormattedTime(o.placedOnDate)}</td>
                         <td><Button color="secondary" size="sm">Details</Button></td>
-                        <td><Button color="success" size="sm">Complete</Button></td>
-                        <td>{"     "}</td>
+                        <td>{getFormattedDate(o.completedOnDate)}</td>
+                        <td>{getFormattedTime(o.completedOnDate)}</td>
                     </tr>)
                 })}
             </tbody>

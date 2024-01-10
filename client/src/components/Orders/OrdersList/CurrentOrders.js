@@ -41,8 +41,8 @@ export const CurrentOrders = () => {
                     <th>Id</th>
                     <th>Type</th>
                     <th>Total</th>
-                    <th>Date</th>
-                    <th>Time</th>
+                    <th>Placed On</th>
+                    <th> </th>
                     <th>Details</th>
                     <th>Complete</th>
                     <th>Cancel</th>
@@ -53,7 +53,7 @@ export const CurrentOrders = () => {
                     return(<tr key={o.id}>
                         <td>{o.id}</td>
                         <td>{o.delivery===true ? "Delivery" : o.tableNumber !== 10 ? "Dine-In" : "Take-Out" }</td>
-                        <td>{`$${o.totalCost}`}</td>
+                        <td>{`$${o.totalCost.toFixed(2)}`}</td>
                         <td>{getFormattedDate(o.placedOnDate)}</td>
                         <td>{getFormattedTime(o.placedOnDate)}</td>
                         <td><Button color="secondary" size="sm">Details</Button></td>
@@ -61,7 +61,6 @@ export const CurrentOrders = () => {
                         <td><Button color="danger" size="sm">Cancel</Button></td>
                     </tr>)
                 })}
-                
             </tbody>
         </Table>
     )
