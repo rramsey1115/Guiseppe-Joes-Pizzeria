@@ -8,4 +8,4 @@ public class PizzaTopping
     [Required]
     public int ToppingId { get; set; }
     public Topping Topping { get; set; }
-}
+} 

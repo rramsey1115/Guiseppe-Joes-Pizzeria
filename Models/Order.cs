@@ -1,13 +1,14 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using GuiseppeJoes.Models;
 
 public class Order 
 {
     public int Id { get; set; }
-    [Required]
+    [Required] 
     public int EmployeeId { get; set; }
     [ForeignKey("EmployeeId")]
-    public Employee Employee { get; set; }
+    public UserProfile Employee { get; set; }
     [Required]
     public DateTime PlacedOnDate { get; set; }
     public DateTime? CompletedOnDate { get; set; }
@@ -16,11 +17,12 @@ public class Order
     [Required]
     public decimal Tip { get; set; }
     [Required]
+    [Range(0, 10)]
     public int TableNumber { get; set; }
-    public string? DeliveryAddress { get; set; }
+    public string? Address { get; set; }
     public int DriverId { get; set; }
     [ForeignKey("DriverId")]
-    public Employee? Driver { get; set; }
+    public UserProfile? Driver { get; set; }
     public List<Pizza> OrderPizzas { get; set; }
     public decimal TotalCost { 
         get

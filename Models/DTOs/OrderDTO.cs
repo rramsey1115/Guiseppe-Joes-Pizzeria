@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using GuiseppeJoes.Models;
 
 public class OrderDTO
 {
     public int Id { get; set; }
     public int EmployeeId { get; set; }
     [ForeignKey("EmployeeId")]
-    public EmployeeDTO Employee { get; set; }
+    public UserProfileDTO Employee { get; set; }
     public DateTime PlacedOnDate { get; set; }
     public bool Delivery { get; set; }
     public decimal Tip { get; set; }
@@ -13,7 +14,7 @@ public class OrderDTO
     public string? DeliveryAddress { get; set; }
     public int DriverId { get; set; }
     [ForeignKey("DriverId")]
-    public EmployeeDTO? Driver { get; set; }
+    public UserProfileDTO? Driver { get; set; }
     public List<PizzaDTO> OrderPizzas { get; set; }
     public decimal TotalCost { 
         get
