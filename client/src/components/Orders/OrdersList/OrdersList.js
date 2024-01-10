@@ -1,4 +1,4 @@
-import "../Orders Stylesheets/OrdersList.css";
+import "./OrdersList.css";
 
 export const OrdersList = () => {
     return(

@@ -4,11 +4,11 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import { Home } from "./Home";
 import { OrdersList } from "./Orders/OrdersList/OrdersList";
-import { CreateDeliveryOrder } from "./Orders/CreateDeliveryOrder";
-import { CreateDineInOrder } from "./Orders/CreateDineInOrder";
-import { ChooseOrderType } from "./Orders/ChooseOrderType";
-import { OrderDetails } from "./Orders/OrderDetails";
-import { CompleteOrder } from "./Orders/CompleteOrder";
+import { CreateDeliveryOrder } from "./Orders/CreateOrders/CreateDeliveryOrder";
+import { CreateDineInOrder } from "./Orders/CreateOrders/CreateDineInOrder";
+import { ChooseOrderType } from "./Orders/CreateOrders/ChooseOrderType";
+import { OrderDetails } from "./Orders/OrderDetails/OrderDetails";
+import { CompleteOrder } from "./Orders/OrderDetails/CompleteOrder";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
