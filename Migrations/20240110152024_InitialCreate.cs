@@ -301,6 +301,26 @@ namespace GuiseppeJoes.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OrderPizzas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    OrderId = table.Column<int>(type: "integer", nullable: false),
+                    PizzaId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderPizzas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderPizzas_Pizzas_PizzaId",
+                        column: x => x.PizzaId,
+                        principalTable: "Pizzas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PizzaToppings",
                 columns: table => new
                 {
@@ -329,12 +349,12 @@ namespace GuiseppeJoes.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "bd922d28-224e-4e53-8e73-320b578f7b92", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "94b44b4a-aad1-42b4-8466-de0d07d1ec5b", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "49ae5d56-9f03-4d4f-b12f-5b64ae51d480", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEKFzaNFbiXp+NHqj/JmDyjV2/ag8iTrJvmTtsuj8nm8tmCcNOdqaWuEwfW74I9sitg==", null, false, "1cb2cba9-3c58-4702-a2c4-0f65092b3f64", false, "Administrator" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "e697748c-ca9e-4a20-b2f9-0440ae818627", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEPSLmH80bBzyMkGQU3NS90qdTjSHq9ZPE8gJNacp2ciOCJ8xs41Ezx++PcWPEZFEKw==", null, false, "71b632b0-fd1f-4cc0-9dc5-c4675bedc28b", false, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "Cheeses",
@@ -421,6 +441,15 @@ namespace GuiseppeJoes.Migrations
                 values: new object[] { 1, "101 Main Street", "Admina", "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", "Strator" });
 
             migrationBuilder.InsertData(
+                table: "OrderPizzas",
+                columns: new[] { "Id", "OrderId", "PizzaId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 2, 1, 2 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Orders",
                 columns: new[] { "Id", "Address", "CompletedOnDate", "Delivery", "DriverId", "EmployeeId", "PlacedOnDate", "TableNumber", "Tip" },
                 values: new object[] { 1, null, new DateTime(2024, 1, 9, 12, 42, 0, 0, DateTimeKind.Unspecified), true, 1, 1, new DateTime(2024, 1, 9, 12, 30, 0, 0, DateTimeKind.Unspecified), 0, 6.00m });
@@ -500,6 +529,11 @@ namespace GuiseppeJoes.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderPizzas_PizzaId",
+                table: "OrderPizzas",
+                column: "PizzaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_DriverId",
                 table: "Orders",
                 column: "DriverId");
@@ -561,6 +595,9 @@ namespace GuiseppeJoes.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "OrderPizzas");
 
             migrationBuilder.DropTable(
                 name: "PizzaToppings");

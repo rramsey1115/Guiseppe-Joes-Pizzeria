@@ -136,7 +136,7 @@ namespace GuiseppeJoes.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "bd922d28-224e-4e53-8e73-320b578f7b92",
+                            ConcurrencyStamp = "94b44b4a-aad1-42b4-8466-de0d07d1ec5b",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -235,13 +235,13 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "49ae5d56-9f03-4d4f-b12f-5b64ae51d480",
+                            ConcurrencyStamp = "e697748c-ca9e-4a20-b2f9-0440ae818627",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEKFzaNFbiXp+NHqj/JmDyjV2/ag8iTrJvmTtsuj8nm8tmCcNOdqaWuEwfW74I9sitg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPSLmH80bBzyMkGQU3NS90qdTjSHq9ZPE8gJNacp2ciOCJ8xs41Ezx++PcWPEZFEKw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1cb2cba9-3c58-4702-a2c4-0f65092b3f64",
+                            SecurityStamp = "71b632b0-fd1f-4cc0-9dc5-c4675bedc28b",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -386,6 +386,41 @@ namespace GuiseppeJoes.Migrations
                             PlacedOnDate = new DateTime(2024, 1, 9, 12, 30, 0, 0, DateTimeKind.Unspecified),
                             TableNumber = 0,
                             Tip = 6.00m
+                        });
+                });
+
+            modelBuilder.Entity("OrderPizza", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PizzaId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PizzaId");
+
+                    b.ToTable("OrderPizzas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            OrderId = 1,
+                            PizzaId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            OrderId = 1,
+                            PizzaId = 2
                         });
                 });
 
@@ -969,6 +1004,17 @@ namespace GuiseppeJoes.Migrations
                     b.Navigation("Driver");
 
                     b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("OrderPizza", b =>
+                {
+                    b.HasOne("Pizza", "Pizza")
+                        .WithMany()
+                        .HasForeignKey("PizzaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pizza");
                 });
 
             modelBuilder.Entity("Pizza", b =>

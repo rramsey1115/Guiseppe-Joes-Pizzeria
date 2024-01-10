@@ -12,10 +12,11 @@ public class GuiseppeJoesDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Order> Orders { get; set; }
     public DbSet<Pizza> Pizzas { get; set; }
     public DbSet<PizzaTopping> PizzaToppings { get; set; }
+    public DbSet<OrderPizza> OrderPizzas { get; set; }
     public DbSet<Sauce> Sauces { get; set; }
     public DbSet<Size> Sizes { get; set; }
     public DbSet<Topping> Toppings { get; set; }
-    
+
     public GuiseppeJoesDbContext(DbContextOptions<GuiseppeJoesDbContext> context, IConfiguration config) : base(context)
     {
         _configuration = config;
@@ -155,6 +156,11 @@ public class GuiseppeJoesDbContext : IdentityDbContext<IdentityUser>
                 DeliveryAddress = "1255 Main St.",
                 DriverId = 1
             }
+        );
+
+        modelBuilder.Entity<OrderPizza>().HasData( 
+            new { Id = 1, OrderId = 1, PizzaId = 1 },
+            new { Id = 2, OrderId = 1, PizzaId = 2 }
         );
     }
 }
