@@ -8,7 +8,14 @@ public class GuiseppeJoesDbContext : IdentityDbContext<IdentityUser>
 {
     private readonly IConfiguration _configuration;
     public DbSet<UserProfile> UserProfiles { get; set; }
-
+    public DbSet<Cheese> Cheeses { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<Pizza> Pizzas { get; set; }
+    public DbSet<PizzaTopping> PizzaToppings { get; set; }
+    public DbSet<Sauce> Sauces { get; set; }
+    public DbSet<Size> Sizes { get; set; }
+    public DbSet<Topping> Toppings { get; set; }
+    
     public GuiseppeJoesDbContext(DbContextOptions<GuiseppeJoesDbContext> context, IConfiguration config) : base(context)
     {
         _configuration = config;
@@ -72,7 +79,7 @@ public class GuiseppeJoesDbContext : IdentityDbContext<IdentityUser>
             new { Id = 7, PizzaId = 3, ToppingId = 6 },
             new { Id = 8, PizzaId = 3, ToppingId = 7 },
             new { Id = 9, PizzaId = 3, ToppingId = 9 },
-            new { Id = 0, PizzaId = 3, ToppingId = 11 },
+            new { Id = 10, PizzaId = 3, ToppingId = 11 },
             new { Id = 11, PizzaId = 4, ToppingId = 2 },
             new { Id = 12, PizzaId = 4, ToppingId = 4 },
             new { Id = 13, PizzaId = 4, ToppingId = 11 },
@@ -112,9 +119,9 @@ public class GuiseppeJoesDbContext : IdentityDbContext<IdentityUser>
         );
 
         modelBuilder.Entity<Size>().HasData( 
-            new { Id = 1, Name = "Small (10\")", Price = 10.00 },
-            new { Id = 2, Name = "Medium (14\")", Price = 12.00 },
-            new { Id = 3, Name = "Large (18\")", Price = 15.00 }
+            new { Id = 1, Name = "Small (10\")", Price = 10.00M },
+            new { Id = 2, Name = "Medium (14\")", Price = 12.00M },
+            new { Id = 3, Name = "Large (18\")", Price = 15.00M }
         );
 
         modelBuilder.Entity<Pizza>().HasData(
@@ -143,20 +150,10 @@ public class GuiseppeJoesDbContext : IdentityDbContext<IdentityUser>
                 PlacedOnDate = new DateTime(2024, 01, 09, 12, 30, 00),
                 CompletedOnDate = new DateTime(2024, 01, 09, 12, 42, 00),
                 Delivery = true,
-                Tip = 6.00,
+                Tip = 6.00M,
                 TableNumber = 0,
                 DeliveryAddress = "1255 Main St.",
                 DriverId = 1
-            },
-            new 
-            { 
-                Id = 2, 
-                EmployeeId = 1, 
-                PlacedOnDate = new DateTime(2024, 01, 10, 15, 22, 00),
-                CompletedOnDate = new DateTime(2024, 01, 10, 15, 40, 00),
-                Delivery = false,
-                Tip = 3.00,
-                TableNumber = 5
             }
         );
     }

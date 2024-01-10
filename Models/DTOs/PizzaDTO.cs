@@ -1,7 +1,8 @@
 public class PizzaDTO
 {
     public int Id { get; set; }
-    public string Size { get; set; }
+    public int SizeId { get; set; }
+    public Size Size { get; set; }
     public decimal Price { get; set; }
     public int CheeseId { get; set; }
     public CheeseDTO Cheese { get; set; }

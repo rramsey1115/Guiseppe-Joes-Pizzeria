@@ -4,7 +4,7 @@ public class Pizza
 {
     public int Id { get; set; }
     [Required]
-    public string SizeId { get; set; }
+    public int SizeId { get; set; }
     public Size Size { get; set; }
     [Required]
     public int CheeseId { get; set; }

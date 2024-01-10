@@ -12,7 +12,7 @@ public class OrderDTO
     public decimal Tip { get; set; }
     public int TableNumber { get; set; }
     public string? DeliveryAddress { get; set; }
-    public int DriverId { get; set; }
+    public int? DriverId { get; set; }
     [ForeignKey("DriverId")]
     public UserProfileDTO? Driver { get; set; }
     public List<PizzaDTO> OrderPizzas { get; set; }
