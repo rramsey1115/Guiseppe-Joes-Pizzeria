@@ -36,7 +36,6 @@ export const CurrentOrders = () => {
     
     return !orders ? <Spinner/> : (
         <Table>
-            {console.log('current', orders)}
             <thead>
                 <tr>
                     <th>Id</th>
@@ -46,7 +45,7 @@ export const CurrentOrders = () => {
                     <th>Time</th>
                     <th>Details</th>
                     <th>Complete</th>
-                    <th>Delete</th>
+                    <th>Cancel</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,12 +53,12 @@ export const CurrentOrders = () => {
                     return(<tr key={o.id}>
                         <td>{o.id}</td>
                         <td>{o.delivery===true ? "Delivery" : o.tableNumber !== 10 ? "Dine-In" : "Take-Out" }</td>
-                        <td>{`$${o.totalCost}.00`}</td>
+                        <td>{`$${o.totalCost}`}</td>
                         <td>{getFormattedDate(o.placedOnDate)}</td>
                         <td>{getFormattedTime(o.placedOnDate)}</td>
                         <td><Button color="secondary" size="sm">Details</Button></td>
                         <td><Button color="success" size="sm">Complete</Button></td>
-                        <td><Button color="danger" size="sm">Delete</Button></td>
+                        <td><Button color="danger" size="sm">Cancel</Button></td>
                     </tr>)
                 })}
                 
