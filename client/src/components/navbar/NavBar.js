@@ -11,6 +11,7 @@ NavbarBrand,
 NavbarToggler,
 } from "reactstrap";
 import { logout } from "../../managers/authManager";
+import pizza from "../../images/pizza.png";
 
 export default function NavBar({ loggedInUser, setLoggedInUser }) {
 const [open, setOpen] = useState(false);
@@ -21,7 +22,10 @@ return (
     <div>
     <Navbar color="light" light fixed="true" expand="lg">
         <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
-        🍕 Guiseppe Joe's 🍕
+            <div style={{display:"flex"}}>
+                <img style={{width:30, height:30, marginRight:4}} src={pizza} alt="pizza"/>
+                <h4>Guiseppe Joe's</h4>
+            </div>
         </NavbarBrand>
         {loggedInUser ? (
         <>
