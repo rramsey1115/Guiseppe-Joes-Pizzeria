@@ -20,18 +20,30 @@ const toggleNavbar = () => setOpen(!open);
 
 return (
     <div>
-    <Navbar color="light" light fixed="true" expand="lg">
+    <Navbar color="light" light fixed="true" expand="sm">
         <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
             <div style={{display:"flex"}}>
-                <img style={{width:30, height:30, marginRight:4}} src={pizza} alt="pizza"/>
-                <h4>Guiseppe Joe's</h4>
+                <img style={{width:30, height:30, marginRight:8}} src={pizza} id="nav-icon" alt="pizza"/>
+                <h3>Guiseppe Joe's</h3>
             </div>
         </NavbarBrand>
         {loggedInUser ? (
         <>
             <NavbarToggler onClick={toggleNavbar} />
             <Collapse isOpen={open} navbar>
-            <Nav navbar></Nav>
+            <Nav navbar>
+                <NavItem onClick={() => setOpen(false)}>
+                    <NavLink tag={RRNavLink} to="/orders">
+                        View Orders
+                    </NavLink>
+                </NavItem>
+                <NavItem onClick={() => setOpen(false)}>
+                    <NavLink tag={RRNavLink} to="/orders/create">
+                        Create Order
+                    </NavLink>
+                </NavItem>
+
+            </Nav>
             </Collapse>
             <Button
             color="primary"
