@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using GuiseppeJoes.Data;
 using Microsoft.EntityFrameworkCore;
 using GuiseppeJoes.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace GuiseppeJoes.Controllers;
 
