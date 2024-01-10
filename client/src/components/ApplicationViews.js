@@ -3,7 +3,7 @@ import { AuthorizedRoute } from "./auth/AuthorizedRoute";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import { Home } from "./Home";
-import { OrdersList } from "./Orders/OrdersList";
+import { OrdersList } from "./Orders/OrdersList/OrdersList";
 import { CreateDeliveryOrder } from "./Orders/CreateDeliveryOrder";
 import { CreateDineInOrder } from "./Orders/CreateDineInOrder";
 import { ChooseOrderType } from "./Orders/ChooseOrderType";
