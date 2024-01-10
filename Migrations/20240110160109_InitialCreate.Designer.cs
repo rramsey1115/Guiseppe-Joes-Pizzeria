@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GuiseppeJoes.Migrations
 {
     [DbContext(typeof(GuiseppeJoesDbContext))]
-    [Migration("20240110152024_InitialCreate")]
+    [Migration("20240110160109_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,7 +138,7 @@ namespace GuiseppeJoes.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "94b44b4a-aad1-42b4-8466-de0d07d1ec5b",
+                            ConcurrencyStamp = "6bb51ecb-9165-48bf-a2b7-0307ff726b41",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -237,13 +237,13 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e697748c-ca9e-4a20-b2f9-0440ae818627",
+                            ConcurrencyStamp = "35ee1127-81ac-4445-9333-d78f7bc167e5",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEPSLmH80bBzyMkGQU3NS90qdTjSHq9ZPE8gJNacp2ciOCJ8xs41Ezx++PcWPEZFEKw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAF5Mdj3aOEvnERoE8HdvOmsrNFova3TIYR64EilAItCzzaLTlx4iEb9XZsJQdPuYg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "71b632b0-fd1f-4cc0-9dc5-c4675bedc28b",
+                            SecurityStamp = "f793b74d-6c5a-494d-ba05-c0b9d3f79d2a",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -388,41 +388,99 @@ namespace GuiseppeJoes.Migrations
                             PlacedOnDate = new DateTime(2024, 1, 9, 12, 30, 0, 0, DateTimeKind.Unspecified),
                             TableNumber = 0,
                             Tip = 6.00m
-                        });
-                });
-
-            modelBuilder.Entity("OrderPizza", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("PizzaId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PizzaId");
-
-                    b.ToTable("OrderPizzas");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            OrderId = 1,
-                            PizzaId = 1
                         },
                         new
                         {
                             Id = 2,
-                            OrderId = 1,
-                            PizzaId = 2
+                            CompletedOnDate = new DateTime(2024, 1, 9, 10, 42, 0, 0, DateTimeKind.Unspecified),
+                            Delivery = false,
+                            EmployeeId = 1,
+                            PlacedOnDate = new DateTime(2024, 1, 9, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            TableNumber = 1,
+                            Tip = 6.00m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CompletedOnDate = new DateTime(2024, 1, 9, 13, 42, 0, 0, DateTimeKind.Unspecified),
+                            Delivery = false,
+                            EmployeeId = 1,
+                            PlacedOnDate = new DateTime(2024, 1, 9, 13, 30, 0, 0, DateTimeKind.Unspecified),
+                            TableNumber = 2,
+                            Tip = 5.55m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CompletedOnDate = new DateTime(2024, 1, 9, 14, 42, 0, 0, DateTimeKind.Unspecified),
+                            Delivery = true,
+                            DriverId = 1,
+                            EmployeeId = 1,
+                            PlacedOnDate = new DateTime(2024, 1, 9, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            TableNumber = 0,
+                            Tip = 6.20m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CompletedOnDate = new DateTime(2024, 1, 9, 15, 42, 0, 0, DateTimeKind.Unspecified),
+                            Delivery = true,
+                            DriverId = 1,
+                            EmployeeId = 1,
+                            PlacedOnDate = new DateTime(2024, 1, 9, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            TableNumber = 0,
+                            Tip = 9.00m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CompletedOnDate = new DateTime(2024, 1, 9, 16, 42, 0, 0, DateTimeKind.Unspecified),
+                            Delivery = false,
+                            EmployeeId = 1,
+                            PlacedOnDate = new DateTime(2024, 1, 9, 16, 30, 0, 0, DateTimeKind.Unspecified),
+                            TableNumber = 3,
+                            Tip = 0.00m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CompletedOnDate = new DateTime(2024, 1, 9, 17, 42, 0, 0, DateTimeKind.Unspecified),
+                            Delivery = true,
+                            DriverId = 1,
+                            EmployeeId = 1,
+                            PlacedOnDate = new DateTime(2024, 1, 9, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            TableNumber = 0,
+                            Tip = 4.50m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CompletedOnDate = new DateTime(2024, 1, 9, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            Delivery = true,
+                            DriverId = 1,
+                            EmployeeId = 1,
+                            PlacedOnDate = new DateTime(2024, 1, 9, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            TableNumber = 0,
+                            Tip = 8.00m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Delivery = false,
+                            EmployeeId = 1,
+                            PlacedOnDate = new DateTime(2024, 1, 10, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            TableNumber = 10,
+                            Tip = 0.00m
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Delivery = true,
+                            DriverId = 1,
+                            EmployeeId = 1,
+                            PlacedOnDate = new DateTime(2024, 1, 10, 9, 55, 0, 0, DateTimeKind.Unspecified),
+                            TableNumber = 0,
+                            Tip = 0.00m
                         });
                 });
 
@@ -437,7 +495,7 @@ namespace GuiseppeJoes.Migrations
                     b.Property<int>("CheeseId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("OrderId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("integer");
 
                     b.Property<int>("SauceId")
@@ -463,6 +521,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 1,
                             CheeseId = 1,
+                            OrderId = 1,
                             SauceId = 1,
                             SizeId = 3
                         },
@@ -470,6 +529,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 2,
                             CheeseId = 1,
+                            OrderId = 1,
                             SauceId = 1,
                             SizeId = 3
                         },
@@ -477,6 +537,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 3,
                             CheeseId = 3,
+                            OrderId = 2,
                             SauceId = 1,
                             SizeId = 1
                         },
@@ -484,6 +545,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 4,
                             CheeseId = 1,
+                            OrderId = 2,
                             SauceId = 1,
                             SizeId = 3
                         },
@@ -491,6 +553,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 5,
                             CheeseId = 4,
+                            OrderId = 3,
                             SauceId = 1,
                             SizeId = 2
                         },
@@ -498,6 +561,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 6,
                             CheeseId = 2,
+                            OrderId = 4,
                             SauceId = 1,
                             SizeId = 1
                         },
@@ -505,6 +569,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 7,
                             CheeseId = 4,
+                            OrderId = 5,
                             SauceId = 1,
                             SizeId = 3
                         },
@@ -512,6 +577,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 8,
                             CheeseId = 1,
+                            OrderId = 5,
                             SauceId = 1,
                             SizeId = 3
                         },
@@ -519,6 +585,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 9,
                             CheeseId = 4,
+                            OrderId = 6,
                             SauceId = 1,
                             SizeId = 1
                         },
@@ -526,6 +593,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 10,
                             CheeseId = 2,
+                            OrderId = 7,
                             SauceId = 1,
                             SizeId = 1
                         },
@@ -533,6 +601,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 11,
                             CheeseId = 1,
+                            OrderId = 7,
                             SauceId = 1,
                             SizeId = 3
                         },
@@ -540,6 +609,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 12,
                             CheeseId = 3,
+                            OrderId = 8,
                             SauceId = 1,
                             SizeId = 1
                         },
@@ -547,6 +617,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 13,
                             CheeseId = 1,
+                            OrderId = 9,
                             SauceId = 1,
                             SizeId = 2
                         },
@@ -554,6 +625,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 14,
                             CheeseId = 2,
+                            OrderId = 9,
                             SauceId = 1,
                             SizeId = 2
                         },
@@ -561,6 +633,7 @@ namespace GuiseppeJoes.Migrations
                         {
                             Id = 15,
                             CheeseId = 3,
+                            OrderId = 10,
                             SauceId = 1,
                             SizeId = 3
                         });
@@ -1008,17 +1081,6 @@ namespace GuiseppeJoes.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("OrderPizza", b =>
-                {
-                    b.HasOne("Pizza", "Pizza")
-                        .WithMany()
-                        .HasForeignKey("PizzaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pizza");
-                });
-
             modelBuilder.Entity("Pizza", b =>
                 {
                     b.HasOne("Cheese", "Cheese")
@@ -1027,9 +1089,11 @@ namespace GuiseppeJoes.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Order", null)
+                    b.HasOne("Order", "Order")
                         .WithMany("OrderPizzas")
-                        .HasForeignKey("OrderId");
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Sauce", "Sauce")
                         .WithMany()
@@ -1044,6 +1108,8 @@ namespace GuiseppeJoes.Migrations
                         .IsRequired();
 
                     b.Navigation("Cheese");
+
+                    b.Navigation("Order");
 
                     b.Navigation("Sauce");
 

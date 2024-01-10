@@ -12,7 +12,6 @@ public class GuiseppeJoesDbContext : IdentityDbContext<IdentityUser>
     public DbSet<Order> Orders { get; set; }
     public DbSet<Pizza> Pizzas { get; set; }
     public DbSet<PizzaTopping> PizzaToppings { get; set; }
-    public DbSet<OrderPizza> OrderPizzas { get; set; }
     public DbSet<Sauce> Sauces { get; set; }
     public DbSet<Size> Sizes { get; set; }
     public DbSet<Topping> Toppings { get; set; }
@@ -126,21 +125,21 @@ public class GuiseppeJoesDbContext : IdentityDbContext<IdentityUser>
         );
 
         modelBuilder.Entity<Pizza>().HasData(
-            new {Id = 1, SizeId = 3, CheeseId = 1, SauceId = 1 },
-            new {Id = 2, SizeId = 3, CheeseId = 1, SauceId = 1 },
-            new {Id = 3, SizeId = 1, CheeseId = 3, SauceId = 1 },
-            new {Id = 4, SizeId = 3, CheeseId = 1, SauceId = 1 },
-            new {Id = 5, SizeId = 2, CheeseId = 4, SauceId = 1 },
-            new {Id = 6, SizeId = 1, CheeseId = 2, SauceId = 1 },
-            new {Id = 7, SizeId = 3, CheeseId = 4, SauceId = 1 },
-            new {Id = 8, SizeId = 3, CheeseId = 1, SauceId = 1 },
-            new {Id = 9, SizeId = 1, CheeseId = 4, SauceId = 1 },
-            new {Id = 10, SizeId = 1, CheeseId = 2, SauceId = 1 },
-            new {Id = 11, SizeId = 3, CheeseId = 1, SauceId = 1 },
-            new {Id = 12, SizeId = 1, CheeseId = 3, SauceId = 1 },
-            new {Id = 13, SizeId = 2, CheeseId = 1, SauceId = 1 },
-            new {Id = 14, SizeId = 2, CheeseId = 2, SauceId = 1 },
-            new {Id = 15, SizeId = 3, CheeseId = 3, SauceId = 1 }
+            new {Id = 1, SizeId = 3, CheeseId = 1, SauceId = 1, OrderId = 1 },
+            new {Id = 2, SizeId = 3, CheeseId = 1, SauceId = 1, OrderId = 1 },
+            new {Id = 3, SizeId = 1, CheeseId = 3, SauceId = 1, OrderId = 2 },
+            new {Id = 4, SizeId = 3, CheeseId = 1, SauceId = 1, OrderId = 2 },
+            new {Id = 5, SizeId = 2, CheeseId = 4, SauceId = 1, OrderId = 3 },
+            new {Id = 6, SizeId = 1, CheeseId = 2, SauceId = 1, OrderId = 4 },
+            new {Id = 7, SizeId = 3, CheeseId = 4, SauceId = 1, OrderId = 5 },
+            new {Id = 8, SizeId = 3, CheeseId = 1, SauceId = 1, OrderId = 5 },
+            new {Id = 9, SizeId = 1, CheeseId = 4, SauceId = 1, OrderId = 6 },
+            new {Id = 10, SizeId = 1, CheeseId = 2, SauceId = 1, OrderId = 7 },
+            new {Id = 11, SizeId = 3, CheeseId = 1, SauceId = 1, OrderId = 7 },
+            new {Id = 12, SizeId = 1, CheeseId = 3, SauceId = 1, OrderId = 8 },
+            new {Id = 13, SizeId = 2, CheeseId = 1, SauceId = 1, OrderId = 9 },
+            new {Id = 14, SizeId = 2, CheeseId = 2, SauceId = 1, OrderId = 9 },
+            new {Id = 15, SizeId = 3, CheeseId = 3, SauceId = 1, OrderId = 10 }
         );
 
         modelBuilder.Entity<Order>().HasData( 
@@ -155,12 +154,105 @@ public class GuiseppeJoesDbContext : IdentityDbContext<IdentityUser>
                 TableNumber = 0,
                 DeliveryAddress = "1255 Main St.",
                 DriverId = 1
+            },
+            new 
+            { 
+                Id = 2, 
+                EmployeeId = 1, 
+                PlacedOnDate = new DateTime(2024, 01, 09, 10, 30, 00),
+                CompletedOnDate = new DateTime(2024, 01, 09, 10, 42, 00),
+                Delivery = false,
+                Tip = 6.00M,
+                TableNumber = 1
+            },
+            new 
+            { 
+                Id = 3, 
+                EmployeeId = 1, 
+                PlacedOnDate = new DateTime(2024, 01, 09, 13, 30, 00),
+                CompletedOnDate = new DateTime(2024, 01, 09, 13, 42, 00),
+                Delivery = false,
+                Tip = 5.55M,
+                TableNumber = 2
+            },
+            new 
+            { 
+                Id = 4, 
+                EmployeeId = 1, 
+                PlacedOnDate = new DateTime(2024, 01, 09, 14, 30, 00),
+                CompletedOnDate = new DateTime(2024, 01, 09, 14, 42, 00),
+                Delivery = true,
+                Tip = 6.20M,
+                TableNumber = 0,
+                DeliveryAddress = "331 Main St.",
+                DriverId = 1
+            },
+            new 
+            { 
+                Id = 5, 
+                EmployeeId = 1, 
+                PlacedOnDate = new DateTime(2024, 01, 09, 15, 30, 00),
+                CompletedOnDate = new DateTime(2024, 01, 09, 15, 42, 00),
+                Delivery = true,
+                Tip = 9.00M,
+                TableNumber = 0,
+                DeliveryAddress = "9004 Broad Ln.",
+                DriverId = 1
+            },
+            new 
+            { 
+                Id = 6, 
+                EmployeeId = 1, 
+                PlacedOnDate = new DateTime(2024, 01, 09, 16, 30, 00),
+                CompletedOnDate = new DateTime(2024, 01, 09, 16, 42, 00),
+                Delivery = false,
+                Tip = 0.00M,
+                TableNumber = 3
+            },
+            new 
+            { 
+                Id = 7, 
+                EmployeeId = 1, 
+                PlacedOnDate = new DateTime(2024, 01, 09, 17, 30, 00),
+                CompletedOnDate = new DateTime(2024, 01, 09, 17, 42, 00),
+                Delivery = true,
+                Tip = 4.50M,
+                TableNumber = 0,
+                DeliveryAddress = "8765 Spring",
+                DriverId = 1
+            },
+            new 
+            { 
+                Id = 8, 
+                EmployeeId = 1, 
+                PlacedOnDate = new DateTime(2024, 01, 09, 18, 30, 00),
+                CompletedOnDate = new DateTime(2024, 01, 09, 19, 00, 00),
+                Delivery = true,
+                Tip = 8.00M,
+                TableNumber = 0,
+                DeliveryAddress = "4422 Elm St.",
+                DriverId = 1
+            },
+            new 
+            { 
+                Id = 9, 
+                EmployeeId = 1, 
+                PlacedOnDate = new DateTime(2024, 01, 10, 09, 00, 00),
+                Delivery = false,
+                Tip = 0.00M,
+                TableNumber = 10
+            },
+            new 
+            { 
+                Id = 10, 
+                EmployeeId = 1, 
+                PlacedOnDate = new DateTime(2024, 01, 10, 9, 55, 00),
+                Delivery = true,
+                Tip = 0.00M,
+                TableNumber = 0,
+                DeliveryAddress = "132 Hickory St.",
+                DriverId = 1
             }
-        );
-
-        modelBuilder.Entity<OrderPizza>().HasData( 
-            new { Id = 1, OrderId = 1, PizzaId = 1 },
-            new { Id = 2, OrderId = 1, PizzaId = 2 }
         );
     }
 }

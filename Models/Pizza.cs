@@ -12,6 +12,9 @@ public class Pizza
     [Required]
     public int SauceId { get; set; }
     public Sauce Sauce { get; set; }
+    [Required]
+    public int OrderId { get; set; }
+    public Order Order { get; set; }
     public List<PizzaTopping> PizzaToppings { get; set; }
     public decimal TotalCost {
         get
