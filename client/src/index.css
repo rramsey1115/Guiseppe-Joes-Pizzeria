@@ -1,3 +1,7 @@
+:root {
+  --green:#039d41;
+  --red: #DC4C64;
+}
 
 body {
   margin: 0;
@@ -10,4 +14,45 @@ body {
 .header {
   margin: 10px auto 20px auto;
   border-bottom: 1px solid black;
+}
+
+.btn {
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.green-btn {
+  background-color: var(--green);
+  box-shadow: 2px 2px 2px 1px gray;
+  transition: ease-in-out .2s;
+}
+
+.green-btn:hover {
+  box-shadow: 1px 1px 2px 1px gray;
+  transition: ease-in-out .2s;
+  background-color: green;
+}
+
+.red-btn {
+  background-color: var(--red);
+  box-shadow: 2px 2px 2px 1px gray;
+  transition: ease-in-out .2s;
+}
+
+.red-btn:hover {
+  box-shadow: 1px 1px 2px 1px gray;
+  transition: ease-in-out .2s;
+  background-color: green;
+}
+
+.light-btn {
+  background-color: lightgray;
+  box-shadow: 2px 2px 2px 1px gray;
+  transition: ease-in-out .2s;
+}
+
+.light-btn:hover {
+  box-shadow: 1px 1px 2px 1px gray;
+  transition: ease-in-out .2s;
+  background-color: gray;
 }

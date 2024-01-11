@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Button, Spinner, Table } from "reactstrap"
+import { Spinner, Table } from "reactstrap"
 import { getAllOrders } from "../../../managers/orderManager";
 
 export const CurrentOrders = () => {
@@ -56,9 +56,9 @@ export const CurrentOrders = () => {
                         <td>{`$${o.totalCost.toFixed(2)}`}</td>
                         <td>{getFormattedDate(o.placedOnDate)}</td>
                         <td>{getFormattedTime(o.placedOnDate)}</td>
-                        <td><Button color="secondary" size="sm">Details</Button></td>
-                        <td><Button color="success" size="sm">Complete</Button></td>
-                        <td><Button color="danger" size="sm">Cancel</Button></td>
+                        <td><button className="btn light-btn">Details</button></td>
+                        <td><button className="btn green-btn">Complete</button></td>
+                        <td><button className="btn red-btn">Cancel</button></td>
                     </tr>)
                 })}
             </tbody>

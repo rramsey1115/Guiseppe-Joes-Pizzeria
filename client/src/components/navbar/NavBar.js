@@ -45,26 +45,26 @@ return (
                 </NavItem>
             </Nav>
             </Collapse>
-            <Button
-            color="success"
-            size="sm"
-            onClick={(e) => {
-                e.preventDefault();
-                setOpen(false);
-                logout().then(() => {
-                setLoggedInUser(null);
-                setOpen(false);
-                });
-            }}
+            <button
+                className="green-btn"
+                size="sm"
+                onClick={(e) => {
+                    e.preventDefault();
+                    setOpen(false);
+                    logout().then(() => {
+                    setLoggedInUser(null);
+                    setOpen(false);
+                    });
+                }}
             >
             Logout
-            </Button>
+            </button>
         </>
         ) : (
         <Nav navbar>
             <NavItem>
             <NavLink tag={RRNavLink} to="/login">
-                <Button color="success" size="sm">Login</Button>
+                <button className="green-btn" size="sm">Login</button>
             </NavLink>
             </NavItem>
         </Nav>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Spinner, Table } from "reactstrap"
+import { Spinner, Table } from "reactstrap"
 import { getAllOrders } from "../../../managers/orderManager";
 
 export const PastOrders = () => {
@@ -56,7 +56,7 @@ export const PastOrders = () => {
                         <td>{`$${o.totalCost.toFixed(2)}`}</td>
                         <td>{getFormattedDate(o.placedOnDate)}</td>
                         <td>{getFormattedTime(o.placedOnDate)}</td>
-                        <td><Button color="secondary" size="sm">Details</Button></td>
+                        <td><button color="secondary" size="sm">Details</button></td>
                         <td>{getFormattedDate(o.completedOnDate)}</td>
                         <td>{getFormattedTime(o.completedOnDate)}</td>
                     </tr>)
