@@ -62,3 +62,8 @@ body {
   transition: ease-in-out .2s;
   background-color: gray;
 }
+
+.spinner-div {
+  margin: 100px 45vw;
+  text-align: center;
+}

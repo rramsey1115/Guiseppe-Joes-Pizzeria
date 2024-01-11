@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Spinner, Table } from "reactstrap"
+import { Table } from "reactstrap"
+import RingLoader from "react-spinners/RingLoader";
 import { getAllOrders } from "../../../managers/orderManager";
 
 export const PastOrders = () => {
@@ -34,7 +35,16 @@ export const PastOrders = () => {
         if (hh < 12) {return (`${hh}:${mm} AM`)};
     }
     
-    return !orders ? <Spinner/> : (
+    return !orders 
+    ? <div className="spinner-div">
+        <RingLoader
+            color="#11b351"
+            loading
+            size={80}
+            speedMultiplier={2}
+            />
+        </div> 
+    : (
         <Table>
             <thead>
                 <tr>

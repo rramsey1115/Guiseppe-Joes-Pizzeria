@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import { Spinner, Table } from "reactstrap"
+import { Table } from "reactstrap"
 import { getAllOrders } from "../../../managers/orderManager";
 import { useNavigate } from "react-router-dom";
+import RingLoader from "react-spinners/RingLoader";
 
 export const CurrentOrders = () => {
     const [orders, setOrders] = useState([]);
@@ -37,7 +38,16 @@ export const CurrentOrders = () => {
 
     const navigate = useNavigate();
     
-    return !orders ? <Spinner/> : (
+    return !orders 
+    ? <div className="spinner-div">
+        <RingLoader
+        color="#11b351"
+        loading
+        size={80}
+        speedMultiplier={2}
+        />
+        </div> 
+    : (
         <Table>
             <thead>
                 <tr>
