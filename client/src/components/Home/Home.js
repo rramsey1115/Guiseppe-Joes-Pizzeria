@@ -16,13 +16,13 @@ export const Home = () => {
             </section>
             <section className="home-btn-container">
                 <div className="btn-div">
-                    <button className="btn green-btn home-btn" onClick={(e) => navigate('orders')}>View Orders</button>
+                    <button className="green-btn" id="home-btn" onClick={(e) => navigate('orders')}>View Orders</button>
                 </div>
                 <div className="btn-div">
-                    <button className="btn green-btn home-btn" onClick={(e) => navigate('create/dinein')}>New Dine-In Order</button>
+                    <button className="green-btn" id="home-btn" onClick={(e) => navigate('create/dinein')}>New Dine-In Order</button>
                 </div>
                 <div className="btn-div">
-                    <button className="btn green-btn home-btn" onClick={(e) => navigate('create/delivery')}>New Delivery Order</button>
+                    <button className="green-btn" id="home-btn" onClick={(e) => navigate('create/delivery')}>New Delivery Order</button>
                 </div>
             </section>
         </div>

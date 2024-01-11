@@ -1,6 +1,6 @@
 :root {
-  --green:#039d41;
-  --red: #DC4C64;
+  --green:#11b351;
+  --red: #FF3131
 }
 
 body {
@@ -8,7 +8,6 @@ body {
   font-family: 'Acme', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: red;
 }
 
 .header {
@@ -16,42 +15,49 @@ body {
   border-bottom: 1px solid black;
 }
 
-.btn {
+.green-btn {
   border: 1px solid black;
   border-radius: 3px;
-}
-
-.green-btn {
   background-color: var(--green);
   box-shadow: 2px 2px 2px 1px gray;
   transition: ease-in-out .2s;
 }
 
 .green-btn:hover {
+  border: 1px solid black;
+  border-radius: 3px;
   box-shadow: 1px 1px 2px 1px gray;
   transition: ease-in-out .2s;
   background-color: green;
 }
 
 .red-btn {
+  border: 1px solid black;
+  border-radius: 3px;
   background-color: var(--red);
   box-shadow: 2px 2px 2px 1px gray;
   transition: ease-in-out .2s;
 }
 
 .red-btn:hover {
+  border: 1px solid black;
+  border-radius: 3px;
   box-shadow: 1px 1px 2px 1px gray;
   transition: ease-in-out .2s;
   background-color: green;
 }
 
 .light-btn {
+  border: 1px solid black;
+  border-radius: 3px;
   background-color: lightgray;
   box-shadow: 2px 2px 2px 1px gray;
   transition: ease-in-out .2s;
 }
 
 .light-btn:hover {
+  border: 1px solid black;
+  border-radius: 3px;
   box-shadow: 1px 1px 2px 1px gray;
   transition: ease-in-out .2s;
   background-color: gray;
