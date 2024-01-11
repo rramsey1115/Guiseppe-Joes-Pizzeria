@@ -56,9 +56,9 @@ export const CurrentOrders = () => {
                         <td>{`$${o.totalCost.toFixed(2)}`}</td>
                         <td>{getFormattedDate(o.placedOnDate)}</td>
                         <td>{getFormattedTime(o.placedOnDate)}</td>
-                        <td><button className="btn light-btn">Details</button></td>
-                        <td><button className="btn green-btn">Complete</button></td>
-                        <td><button className="btn red-btn">Cancel</button></td>
+                        <td><button className="light-btn">Details</button></td>
+                        <td><button className="green-btn">Complete</button></td>
+                        <td><button className="red-btn">Cancel</button></td>
                     </tr>)
                 })}
             </tbody>

@@ -25,7 +25,7 @@ return (
         <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
             <div style={{display:"flex"}}>
                 <img src={pizza} id="nav-icon" alt="pizza"/>
-                <h4>Guiseppe Joe's</h4>
+                <h4 id="nav-title">Guiseppe Joe's</h4>
             </div>
         </NavbarBrand>
         {loggedInUser ? (

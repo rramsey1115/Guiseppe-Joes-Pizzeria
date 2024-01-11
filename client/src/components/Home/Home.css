@@ -28,7 +28,7 @@
     margin: 0px 50px 0px 0px;
 }
 
-h1 {
+.home-img-container > h1 {
     font-size: 60px;
     font-weight: bold;
     text-shadow: 1px 1px 3px var(--green);
@@ -37,7 +37,7 @@ h1 {
     color: var(--red);
 }
 
-h2 {
+.home-img-container > h2 {
     font-size: 44px;
     font-family: 'Acme', sans-serif;
     margin-top: 6px;
