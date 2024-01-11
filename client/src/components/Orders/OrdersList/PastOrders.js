@@ -42,10 +42,10 @@ export const PastOrders = () => {
                     <th>Type</th>
                     <th>Paid</th>
                     <th>Placed On</th>
-                    <th></th>
+                    <th>Time</th>
                     <th>Details</th>
                     <th>Completed On</th>
-                    <th></th>
+                    <th>Time</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,7 +56,7 @@ export const PastOrders = () => {
                         <td>{`$${o.totalCost.toFixed(2)}`}</td>
                         <td>{getFormattedDate(o.placedOnDate)}</td>
                         <td>{getFormattedTime(o.placedOnDate)}</td>
-                        <td><button color="secondary" size="sm">Details</button></td>
+                        <td><button className="light-btn">Details</button></td>
                         <td>{getFormattedDate(o.completedOnDate)}</td>
                         <td>{getFormattedTime(o.completedOnDate)}</td>
                     </tr>)

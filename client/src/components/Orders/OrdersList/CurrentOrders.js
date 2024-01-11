@@ -42,7 +42,7 @@ export const CurrentOrders = () => {
                     <th>Type</th>
                     <th>Total</th>
                     <th>Placed On</th>
-                    <th> </th>
+                    <th>Time</th>
                     <th>Details</th>
                     <th>Complete</th>
                     <th>Cancel</th>
