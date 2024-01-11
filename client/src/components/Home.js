@@ -5,7 +5,7 @@ export const Home = () => {
             <h1>Home</h1>
         </div>
         <div className="body">
-
+            
         </div>
     </div>)
 }
