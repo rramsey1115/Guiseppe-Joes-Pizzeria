@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Spinner, Table } from "reactstrap"
 import { getAllOrders } from "../../../managers/orderManager";
+import { useNavigate } from "react-router-dom";
 
 export const CurrentOrders = () => {
     const [orders, setOrders] = useState([]);
@@ -33,6 +34,8 @@ export const CurrentOrders = () => {
         if(hh >= 12) {return (`${hh - 12}:${mm} PM`)};
         if (hh < 12) {return (`${hh}:${mm} AM`)};
     }
+
+    const navigate = useNavigate();
     
     return !orders ? <Spinner/> : (
         <Table>
@@ -56,9 +59,28 @@ export const CurrentOrders = () => {
                         <td>{`$${o.totalCost.toFixed(2)}`}</td>
                         <td>{getFormattedDate(o.placedOnDate)}</td>
                         <td>{getFormattedTime(o.placedOnDate)}</td>
-                        <td><button className="light-btn">Details</button></td>
-                        <td><button className="green-btn">Complete</button></td>
-                        <td><button className="red-btn">Cancel</button></td>
+                        <td>
+                            <button 
+                                className="light-btn" 
+                                value={o.id} 
+                                onClick={(e) => navigate(`details/${e.target.value}`)}
+                                >Details
+                            </button>
+                        </td>
+                        <td>
+                            <button 
+                                className="green-btn" 
+                                value={o.id}
+                                onClick={(e) => navigate(`complete/${e.target.value}`)}
+                                >Complete
+                            </button>
+                        </td>
+                        <td>
+                            <button 
+                                className="red-btn"
+                                >Cancel
+                            </button>
+                        </td>
                     </tr>)
                 })}
             </tbody>
