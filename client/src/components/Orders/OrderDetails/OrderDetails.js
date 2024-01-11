@@ -18,22 +18,30 @@ export const OrderDetails = () => {
         getOrderById(orderId * 1).then(setOrder);
     }
     
-    return order 
-    ? <div className="spinner-div"><RingLoader
-    color="#11b351"
-    loading
-    size={80}
-    speedMultiplier={2}
-  /></div>
+    return !order 
+    ? <div className="spinner-div">
+        <RingLoader
+            color="#11b351"
+            loading
+            size={80}
+            speedMultiplier={2}
+        />
+    </div>
     : (
     <div className="container">
         {console.log('order', order)}
         <section className="body">
 
-            <section className="body-left">
-
+            {/* table for order details to update with form on right side */}
+            <section className="body-left"> 
+                <table>
+                    <thead>
+                        
+                    </thead>
+                </table>
             </section>
 
+            {/* form to open when button clicked - change values on left side */}
             <section className="body-right">
                 
             </section>
