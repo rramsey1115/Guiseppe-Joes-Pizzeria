@@ -27,14 +27,14 @@ export const OrderDetails = () => {
     : (
     <div className="container">
         {console.log('order', order)}
-        <section className="body">
+        <section className="details-body">
 
-            {/* table for order details to update with form on right side */}
+                {/* table for order details to update with form on right side */}
             <section className="body-left"> 
                 <DetailsTable order={order}/>
             </section>
 
-            {/* form to open when button clicked - change values on left side */}
+                {/* form to open when button clicked - change values on left side */}
             <section className="body-right">
                 <EditOrderForm setFormOpen={setFormOpen} setOrder={setOrder} order={order}/>
             </section>
