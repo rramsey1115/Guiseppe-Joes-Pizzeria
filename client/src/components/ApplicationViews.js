@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { AuthorizedRoute } from "./auth/AuthorizedRoute";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-import { Home } from "./Home";
+import { Home } from "./Home/Home";
 import { OrdersList } from "./Orders/OrdersList/OrdersList";
 import { CreateDeliveryOrder } from "./Orders/CreateOrders/CreateDeliveryOrder";
 import { CreateDineInOrder } from "./Orders/CreateOrders/CreateDineInOrder";
