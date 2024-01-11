@@ -1,0 +1,25 @@
+.body {
+    margin:20px 0px;
+    border: 1px dashed blue;
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.body-left {
+    border: 1px solid red;
+    width: 35%;
+    padding: 4px 8px;
+}
+
+.body-right {
+    border: 1px solid green;
+    width: 55%;
+    padding: 4px 8px;
+}
+
+.details-header {
+    border-bottom: thin solid black;
+}
