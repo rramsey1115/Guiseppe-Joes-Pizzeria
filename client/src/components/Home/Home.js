@@ -1,8 +1,11 @@
 import { Button } from "reactstrap"
 import "./Home.css";
 import homeLogo from "../../images/Guiseppe_Joes_Logo.png";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
+    const navigate = useNavigate();
+
     return(
     <div className="container">
         <div className="header">
@@ -14,13 +17,13 @@ export const Home = () => {
             </section>
             <section className="home-btn-container">
                 <div className="btn-div">
-                    <Button className="home-btn" color="success">View Orders</Button>
+                    <Button className="home-btn" color="success" onClick={(e) => navigate('orders')}>View Orders</Button>
                 </div>
                 <div className="btn-div">
-                    <Button className="home-btn" color="success">New Dine-In Order</Button>
+                    <Button className="home-btn" color="success" onClick={(e) => navigate('create/dinein')}>New Dine-In Order</Button>
                 </div>
                 <div className="btn-div">
-                    <Button className="home-btn" color="success">New Delivery Order</Button>
+                    <Button className="home-btn" color="success" onClick={(e) => navigate('create/delivery')}>New Delivery Order</Button>
                 </div>
             </section>
         </div>
