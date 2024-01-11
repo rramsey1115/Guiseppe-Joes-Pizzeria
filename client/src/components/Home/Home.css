@@ -18,10 +18,29 @@
 }
 
 .home-img-container {
+    margin: 40px auto;
     text-align: center;
 }
 
 #home-logo {
-    width: 350px;
-    height: 300px;
+    width: 300px;
+    height: 230px;
+    margin: 0px 50px 0px 0px;
+}
+
+h1 {
+    font-size: 60px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px var(--green);
+    font-family: 'Acme', sans-serif;
+    margin: none;
+    color: var(--red);
+}
+
+h2 {
+    font-size: 44px;
+    font-family: 'Acme', sans-serif;
+    margin-top: 6px;
+    color: var(--red);
+    text-shadow: 1px 1px 2px var(--green);
 }

@@ -7,12 +7,11 @@ export const Home = () => {
 
     return(
     <div className="container">
-        <div className="header">
-            <h1>Home</h1>
-        </div>
         <div className="body">
             <section className="home-img-container">
+                <h1>Guiseppe Joe's</h1>
                 <img id="home-logo" alt="logo" src={homeLogo}/>
+                <h2>Est. 1978</h2>
             </section>
             <section className="home-btn-container">
                 <div className="btn-div">
