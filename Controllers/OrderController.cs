@@ -186,126 +186,95 @@ public class OrderController : ControllerBase
         };
     }
 
-    // [HttpPost("{id}/{userId}/complete")]
-    // [Authorize]
-    // public IActionResult Complete(int id, int userId)
-    // {
-    //     var toAdd = new ChoreCompletion
-    //     {
-    //         UserProfileId = userId,
-    //         ChoreId = id,
-    //         CompletedOn = DateTime.Now
-    //     };
+    [HttpPut("{id}/complete")]
+    [Authorize]
+    public IActionResult Complete(Order obj, int id)
+    {
+        try
+        {
 
-    //     _dbContext.ChoreCompletions.Add(toAdd);
-    //     _dbContext.SaveChanges();
-    //     return NoContent();
-    // }
+            Order o = _dbContext.Orders.FirstOrDefault(o => o.Id == id);
+            if ( o == null )
+            {
+                return NotFound("no order with given id found");
+            }
 
-    // [HttpPost("create")]
-    // [Authorize(Roles = "Admin")]
-    // public IActionResult Create(Chore c)
-    // {
-    //     _dbContext.Chores.Add(c);
-    //     _dbContext.SaveChanges();
-    //     return Created($"{c.Id}", c);
-    // }
+            o.Tip = obj.Tip;
+            o.CompletedOnDate = DateTime.Now;
+            if(obj.Delivery == true)
+            {
+                o.DriverId = obj.DriverId;
+                o.Address = obj.Address;
+            }
 
-    // [HttpPut("{id}")]
-    // [Authorize(Roles = "Admin")]
-    // public IActionResult Update(int id, Chore c)
-    // {
-    //     Chore foundC = _dbContext.Chores.SingleOrDefault(c => c.Id == id);
-    //     if (foundC == null)
-    //     {
-    //         return BadRequest("Id param does not match any chore id");
-    //     }
-    //     foundC.Name = c.Name;
-    //     foundC.Difficulty = c.Difficulty;
-    //     foundC.ChoreFrequencyDays = c.ChoreFrequencyDays;
-    //     _dbContext.SaveChanges();
-    //     return Created($"api/chore/{foundC.Id}", foundC);
-    // }
+            _dbContext.SaveChanges();
+            return Created($"api/order/${o.Id}", o);
 
-    // [HttpDelete("{id}")]
-    // [Authorize(Roles = "Admin")]
-    // public IActionResult Delete(int id)
-    // {
-    //     Chore foundC = _dbContext.Chores.SingleOrDefault(c => c.Id == id);
-    //     if (foundC == null)
-    //     {
-    //         return BadRequest("Id param does not match any chore id");
-    //     }
-    //     _dbContext.Chores.Remove(foundC);
-    //     _dbContext.SaveChanges();
-    //     return NoContent();
-    // }
+        }
+        catch ( Exception ex )
+        {
+            return BadRequest($"{ex}");
+        }
 
-    // [HttpPost("{id}/assign/{userId}")]
-    // [Authorize(Roles = "Admin")]
-    // public IActionResult Assign(int id, int userId)
-    // {
-    //     var assignment = new ChoreAssignment
-    //     {
-    //         UserProfileId = userId,
-    //         ChoreId = id
-    //     };
+    }
 
-    //     _dbContext.ChoreAssignments.Add(assignment);
-    //     _dbContext.SaveChanges();
-    //     return NoContent();
-    // }
+    [HttpPost("create")]
+    [Authorize]
+    public IActionResult Create(Order order)
+    {
+        _dbContext.Orders.Add(order);
+        _dbContext.SaveChanges();
+        return Created($"api/order/{order.Id}", order);
+    }
 
-    // [HttpPost("{id}/unassign/{userId}")]
-    // [Authorize(Roles = "Admin")]
-    // public IActionResult Unassign(int id, int userId)
-    // {
-    //     var found = _dbContext.ChoreAssignments
-    //     .Where(ca => ca.ChoreId == id && ca.UserProfileId == userId);
+    [HttpPut("{id}")]
+    [Authorize]
+    public IActionResult Update(int id, Order obj)
+    {
+        try
+        {
+            Order o = _dbContext.Orders.SingleOrDefault(c => c.Id == id);
+            if (o == null)
+            {
+                return BadRequest("Id param does not match any order id");
+            }
 
-    //     foreach(var f in found)
-    //     {
-    //         _dbContext.ChoreAssignments.Remove(f);
-    //     }
-        
-    //     _dbContext.SaveChanges();
-    //     return NoContent();
-    // }
+            if (obj.Delivery == true)
+            {
+                o.Delivery = true;
+                o.DriverId = obj.DriverId;
+                o.Address = obj.Address;
+                o.TableNumber = 0;
+            }
+            else
+            {
+                o.Delivery = false;
+                o.DriverId = null;
+                o.Address = null;
+                o.TableNumber = obj.TableNumber;
+            }
 
-    // [HttpGet("my/{userId}")]
-    // [Authorize]
-    // public IActionResult GetMy(int userId)
-    // {
-    //     var foundAssignments = _dbContext.ChoreAssignments
-    //     .Include(c => c.Chore).ThenInclude(chore => chore.ChoreCompletions)
-    //     .Where(c => c.UserProfileId == userId);
+            _dbContext.SaveChanges();
+            return Created($"api/Order/{o.Id}", o);
+        }
+        catch ( Exception ex)
+        {
+            return BadRequest($"Bad data: {ex}");
+        }
+    }
 
-    //     if(foundAssignments == null)
-    //     {
-    //         return NoContent();
-    //     }
+    [HttpDelete("{id}")]
+    [Authorize]
+    public IActionResult Delete(int id)
+    {
+        Order order = _dbContext.Orders.SingleOrDefault(o => o.Id == id);
+        if (order == null)
+        {
+            return BadRequest("Id param does not match any Order id");
+        }
+        _dbContext.Orders.Remove(order);
+        _dbContext.SaveChanges();
+        return NoContent();
+    }
 
-    //     return Ok(foundAssignments.Select(a => new ChoreAssignmentDTO
-    //     {
-    //         Id = a.Id,
-    //         UserProfileId = a.UserProfileId,
-    //         ChoreId = a.ChoreId,
-    //         Chore = new ChoreDTO
-    //         {
-    //             Id = a.Chore.Id,
-    //             Name = a.Chore.Name,
-    //             Difficulty = a.Chore.Difficulty,
-    //             ChoreFrequencyDays = a.Chore.ChoreFrequencyDays,
-    //             ChoreCompletions = a.Chore.ChoreCompletions.Select(cp => new ChoreCompletionDTO
-    //             {
-    //                 Id = cp.Id,
-    //                 UserProfileId = cp.UserProfileId,
-    //                 ChoreId = cp.ChoreId,
-    //                 CompletedOn = cp.CompletedOn
-    //             }).ToList()
-    //         }
-    //     }).ToList()
-    //     );
-        
-    // }
 }

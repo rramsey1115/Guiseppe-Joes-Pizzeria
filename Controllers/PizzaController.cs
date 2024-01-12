@@ -77,5 +77,13 @@ public class PizzaController : ControllerBase
         }
     }
 
+    [HttpPost("create")]
+    [Authorize]
+    public IActionResult Create(Pizza pizza)
+    {
+        _dbContext.Pizzas.Add(pizza);
+        _dbContext.SaveChanges();
 
+        return Created($"{pizza.Id}", pizza);
+    }
 }

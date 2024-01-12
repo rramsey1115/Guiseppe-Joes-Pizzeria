@@ -11,7 +11,7 @@ public class Order
     public int EmployeeId { get; set; }
 
     [ForeignKey("EmployeeId")]
-    public UserProfile Employee { get; set; }
+    public UserProfile? Employee { get; set; }
 
     [Required]
     public DateTime PlacedOnDate { get; set; }
@@ -36,6 +36,7 @@ public class Order
     [ForeignKey("DriverId")]
     public UserProfile? Driver { get; set; }
 
+    [Required]
     public List<Pizza> OrderPizzas { get; set; }
 
     public decimal TotalCost { 
