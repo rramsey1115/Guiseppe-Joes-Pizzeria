@@ -13,14 +13,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order }) => {
     </div>
     : (
     <form className="edit-details-form">
-        <h4>Edit Order</h4>
         <fieldset>
-            <label>Employee
-                <input type="text"/>
-            </label>
-            <label>Complete
-                <input type="text"/>
-            </label>
             <label>Type
                 <input type="text"/>
             </label>

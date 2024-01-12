@@ -29,13 +29,20 @@
     border-bottom: thin solid black;
 }
 
+.body-right-btn > div {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-evenly;
+}
+
 .hidden-div {
     transition: ease-in-out .5s;
 }
 
 #edit-form-btn {
     width: 200px;
-    margin: 0px 0px 8px 0px;
+    margin: 0px 8px 8px 0px;
 }
 
 /* -----------------DETAILS TABLE------------- */

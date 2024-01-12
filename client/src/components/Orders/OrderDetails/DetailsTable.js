@@ -105,8 +105,9 @@ export const DetailsTable = ({ order }) => {
                                 }) : " - None"}
                             </td>
                             <td>
-                                {order.completedOnDate !== null ? null : 
-                                <button 
+                                {order.completedOnDate !== null || order.orderPizzas.length <= 1 
+                                ? null 
+                                :<button 
                                     className="red-btn" 
                                     style={{width:35, height:25, alignContent:"center"}}
                                     value={p.id}

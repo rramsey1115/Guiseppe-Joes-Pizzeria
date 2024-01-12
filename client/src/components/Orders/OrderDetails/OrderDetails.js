@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import RingLoader from "react-spinners/RingLoader"
 import "./OrderDetails.css";
 import { DetailsTable } from "./DetailsTable";
-import { EditOrderForm } from "./EditOrderForm";
+import { EditOrderForm } from "./Form/EditOrderForm";
 
 export const OrderDetails = () => {
     const id = useParams().id;
@@ -39,12 +39,19 @@ export const OrderDetails = () => {
 
                 <div className="body-right-btn">
                     {order.completedOnDate === null 
-                    ?<button 
-                        id="edit-form-btn"
-                        className="green-btn"
-                        onClick={() => setFormOpen(!formOpen)}
-                        >Edit Order
-                    </button> 
+                    ?<div>
+                        <button 
+                            id="edit-form-btn"
+                            className="light-btn"
+                            onClick={() => setFormOpen(!formOpen)}
+                            >Edit Order
+                        </button> 
+                        <button
+                            id="edit-form-btn"
+                            className="green-btn"
+                            >Complete Order
+                        </button>
+                    </div>
                     : <h4>Order Complete</h4>}
                 </div>
 
