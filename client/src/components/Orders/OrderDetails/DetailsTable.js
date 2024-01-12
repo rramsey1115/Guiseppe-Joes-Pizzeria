@@ -22,7 +22,9 @@ export const DetailsTable = ({ order }) => {
         if(hh >= 12) {return (`${hh - 12}:${mm} PM`)};
         if (hh < 12) {return (`${hh}:${mm} AM`)};
     }
+
     let pizzaCount = 0;
+
     return !order.orderPizzas 
     ? <div className="spinner-div">
         <RingLoader
@@ -34,6 +36,7 @@ export const DetailsTable = ({ order }) => {
     </div>
     : (
     <div className="details-table-div">
+        {console.log(order)}
         <header className="details-table-header">
             <h4>Order No. {order.id}</h4>
         </header>
@@ -69,13 +72,17 @@ export const DetailsTable = ({ order }) => {
                     </tr> 
                     <tr>
                         <th>Driver</th>
-                        <td>{`${order.driverId}. ${order.driver.firstName} ${order.driver.lastName}`}</td>
+                        <td>{`${order.driver.firstName} ${order.driver.lastName}`}</td>
                     </tr>
                     </>
+                : 
+                order.tableNumber === 10 
+                ? null 
                 : <tr>
-                        <th>Table</th>
-                        <td>{order.tableNumber}</td>
-                    </tr>}
+                    <th>Table</th>
+                    <td>{order.tableNumber}</td>
+                </tr> }
+                
                 {/* map over orderpizzas and make row for each pizza with all info about pizza */}
                 {order.orderPizzas.map(p => {
                     pizzaCount++;
@@ -95,8 +102,16 @@ export const DetailsTable = ({ order }) => {
                         </tr>
                     )
                 })}
+
+
+                {order.delivery ? <tr>
+                    <th>Fees</th>
+                    <td>$5.00</td>
+                </tr> : null}
+
+                {order.tip === null ? null : <tr><th>Tip</th><td>{`$${order.tip.toFixed(2)}`}</td></tr> }
                 <tr>
-                    <th>Total</th>
+                    <th>{order.completedOnDate !== null ? "Paid" : "Total"}</th>
                     <td>{`$${order.totalCost.toFixed(2)}`}</td>
                 </tr>
             </tbody>

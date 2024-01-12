@@ -11,5 +11,13 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order }) => {
             speedMultiplier={2}
         />
     </div>
-    : (<h2>Edit Order Form</h2>)
+    : (
+    <form className="edit-details-form">
+        <h4>Edit Order</h4>
+        <fieldset>
+            <label>
+                <input type="text"/>
+            </label>
+        </fieldset>
+    </form>)
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Table } from "reactstrap"
 import RingLoader from "react-spinners/RingLoader";
 import { getAllOrders } from "../../../managers/orderManager";
+import { useNavigate } from "react-router-dom";
 
 export const PastOrders = () => {
     const [orders, setOrders] = useState([]);
@@ -14,6 +15,9 @@ export const PastOrders = () => {
             setOrders(filtered);
         });
     }
+
+    const navigate = useNavigate();
+
 
     const getFormattedDate = (dateString) => {
         const date = new Date(dateString); // {object Date}
@@ -66,7 +70,7 @@ export const PastOrders = () => {
                         <td>{`$${o.totalCost.toFixed(2)}`}</td>
                         <td>{getFormattedDate(o.placedOnDate)}</td>
                         <td>{getFormattedTime(o.placedOnDate)}</td>
-                        <td><button className="light-btn">Details</button></td>
+                        <td><button className="light-btn" value={o.id} onClick={(e) => navigate(`details/${e.target.value}`)}>Details</button></td>
                         <td>{getFormattedDate(o.completedOnDate)}</td>
                         <td>{getFormattedTime(o.completedOnDate)}</td>
                     </tr>)
