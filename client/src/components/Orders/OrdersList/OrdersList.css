@@ -12,6 +12,6 @@ th {
 }
 
 .table-header {
-    background-color: lightgray;
+    background-color: var(--offwhite);
     padding: 4px 6px;
 }

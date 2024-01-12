@@ -9,7 +9,7 @@
 }
 
 .body-left {
-    background-color: rgb(241, 241, 241);
+    background-color: var(--offwhite);
     border: 1px solid darkgray;
     border-radius: 8px;
     width: 45%;
@@ -43,19 +43,18 @@
     border-bottom: thin solid black;
 }
 
-tr {
+.details-table > tbody > tr {
     height: 40px;
-
     border-bottom: 1px solid darkgray;
     vertical-align: top;
 }
 
-th {
+.details-table > tbody > tr > th {
     padding: 5px 2px;
     width: 35%;
 }
 
-td {
+.details-table > tbody > tr > td {
     padding: 5px;
     width: 65%;
 }

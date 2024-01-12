@@ -41,7 +41,7 @@ export const DetailsTable = ({ order }) => {
         <header className="details-table-header">
             <h4>Order No. {order.id}</h4>
         </header>
-        <table id="details-table">
+        <table className="details-table">
             <tbody>
                 <tr>
                     <th>Date</th>
@@ -75,7 +75,9 @@ export const DetailsTable = ({ order }) => {
                     </tr> 
                     <tr>
                         <th>Driver</th>
-                        <td>{`${order.driver.firstName} ${order.driver.lastName}`}</td>
+                        {order.driverId 
+                        ? <td>{`${order.driver.firstName} ${order.driver.lastName}`}</td> 
+                        : <td>Not Assigned</td>}
                     </tr>
                     </>
                 : 

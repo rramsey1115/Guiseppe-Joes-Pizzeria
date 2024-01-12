@@ -1,6 +1,7 @@
 :root {
   --green:#11b351;
-  --red: #FF3131
+  --red: #FF3131;
+  --offwhite: rgb(229, 229, 229);
 }
 
 body {
