@@ -1,8 +1,7 @@
 import RingLoader from "react-spinners/RingLoader";
 import { ImCross } from "react-icons/im";
-import { Table } from "reactstrap";
 
-export const DetailsTable = ({ order }) => {
+export const DetailsTable = ({ order, updatedObj }) => {
 
     const getFormattedDate = (dateString) => {
         const date = new Date(dateString); // {object Date}
@@ -26,7 +25,7 @@ export const DetailsTable = ({ order }) => {
 
     let pizzaCount = 0;
 
-    return !order.orderPizzas 
+    return !updatedObj.orderPizzas 
     ? <div className="spinner-div">
         <RingLoader
             color="#11b351"
@@ -37,59 +36,59 @@ export const DetailsTable = ({ order }) => {
     </div>
     : (
     <div className="details-table-div">
-        
+
         <header className="details-table-header">
-            <h4>Order No. {order.id}</h4>
+            <h4>Order No. {updatedObj.id}</h4>
         </header>
         <table className="details-table">
             <tbody>
                 <tr>
                     <th>Date</th>
                     <td>
-                        {getFormattedDate(order.placedOnDate)}{"    "}
-                        {getFormattedTime(order.placedOnDate)}
+                        {getFormattedDate(updatedObj.placedOnDate)}{"    "}
+                        {getFormattedTime(updatedObj.placedOnDate)}
                     </td>
                 </tr>
                 <tr>
                     <th>Employee</th>
-                    <td>{`${order.employee.firstName} ${order.employee.lastName}`}</td>
+                    <td>{`${updatedObj.employee.firstName} ${updatedObj.employee.lastName}`}</td>
                 </tr>
                 <tr>
                     <th>Complete</th>
-                    {order.completedOnDate 
-                    ? <td>{getFormattedDate(order.completedOnDate)}{' '}{getFormattedTime(order.completedOnDate)}</td> 
+                    {updatedObj.completedOnDate 
+                    ? <td>{getFormattedDate(updatedObj.completedOnDate)}{' '}{getFormattedTime(updatedObj.completedOnDate)}</td> 
                     : <td style={{color:'red'}}>No</td>} 
                 </tr>  
                 <tr>
                     <th>Type</th>
                     {/* shows Deliver, Dine-In, or Take-Out based on delivery and table number */}
-                    {order.delivery 
+                    {updatedObj.delivery 
                     ? <td>Delivery</td> 
-                    : order.tableNumber === 10 ? <td>Take-Out</td> : <td>Dine-In</td>}
+                    : updatedObj.tableNumber === 10 ? <td>Take-Out</td> : <td>Dine-In</td>}
                 </tr>
                 {/* shows delivery address and driver OR table number */}
-                {order.delivery 
+                {updatedObj.delivery 
                 ? <><tr>
                         <th>Address</th>
-                        <td>{order.address}</td>
+                        <td>{updatedObj.address}</td>
                     </tr> 
                     <tr>
                         <th>Driver</th>
-                        {order.driverId 
-                        ? <td>{`${order.driver.firstName} ${order.driver.lastName}`}</td> 
+                        {updatedObj.driverId 
+                        ? <td>{`${updatedObj.driver.firstName} ${updatedObj.driver.lastName}`}</td> 
                         : <td>Not Assigned</td>}
                     </tr>
                     </>
                 : 
-                order.tableNumber === 10 
+                updatedObj.tableNumber === 10 
                 ? null 
                 : <tr>
                     <th>Table</th>
-                    <td>{order.tableNumber}</td>
+                    <td>{updatedObj.tableNumber}</td>
                 </tr> }
                 
-                {/* map over orderpizzas and make row for each pizza with all info about pizza */}
-                {order.orderPizzas.map(p => {
+                {/* map over updatedObjpizzas and make row for each pizza with all info about pizza */}
+                {updatedObj.orderPizzas.map(p => {
                     pizzaCount++;
                     return (
                         <tr key={p.id}>
@@ -105,7 +104,7 @@ export const DetailsTable = ({ order }) => {
                                 }) : " - None"}
                             </td>
                             <td>
-                                {order.completedOnDate !== null || order.orderPizzas.length <= 1 
+                                {updatedObj.completedOnDate !== null || updatedObj.orderPizzas.length <= 1 
                                 ? null 
                                 :<button 
                                     className="red-btn" 

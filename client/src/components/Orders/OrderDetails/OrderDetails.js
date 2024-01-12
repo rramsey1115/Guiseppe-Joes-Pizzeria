@@ -10,12 +10,15 @@ export const OrderDetails = () => {
     const id = useParams().id;
     const [order, setOrder] = useState({});
     const [formOpen, setFormOpen] = useState(false);
+    const [updatedObj, setUpdatedObj] = useState({});
 
     useEffect(() => {  if(id){getAndSetOrderById(id)} }, [id]);
 
+    useEffect(() => {setUpdatedObj({...order})}, [order]);
+
     const getAndSetOrderById = (orderId) => { getOrderById(orderId * 1).then(setOrder) };
     
-    return !order 
+    return !updatedObj 
     ? <div className="spinner-div">
         <RingLoader
             color="#11b351"
@@ -31,7 +34,7 @@ export const OrderDetails = () => {
 
                 {/* table for order details to update with form on right side */}
             <section className="body-left"> 
-                <DetailsTable order={order}/>
+                <DetailsTable order={order} updatedObj={updatedObj}/>
             </section>
 
                 {/* form to open when button clicked - change values on left side */}
@@ -56,7 +59,7 @@ export const OrderDetails = () => {
                 </div>
 
                 <div className="hidden-div" hidden={formOpen ? false : true }>
-                    <EditOrderForm setFormOpen={setFormOpen} setOrder={setOrder} order={order}/>
+                    <EditOrderForm setFormOpen={setFormOpen} setOrder={setOrder} order={order} updatedObj={updatedObj} setUpdatedObj={setUpdatedObj}/>
                 </div>
 
             </section>

@@ -2,14 +2,9 @@ import RingLoader from "react-spinners/RingLoader";
 import "./EditOrderForm.css";
 import { useEffect, useState } from "react";
 
-export const EditOrderForm = ({ setFormOpen, setOrder, order }) => {
-    const [updatedObj, setUpdatedObj] = useState({
-        delivery: order.delivery,
-    });
+export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, updatedObj }) => {
 
-    const refreshOrder = () => {
-        setOrder(updatedObj);
-    }
+    useEffect(() => {if(order.delivery){updatedObj.delivery = order.delivery}}, [order.delivery]);
 
     return !order 
     ? <div className="spinner-div">
@@ -36,7 +31,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order }) => {
                                 onClick={() => {
                                     const copy = {...updatedObj}
                                     copy.delivery = true
-                                    setUpdatedObj(copy).then(() => refreshOrder());
+                                    setUpdatedObj(copy);
                                 }}
                             />Delivery
                         </div>
