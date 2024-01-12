@@ -1,8 +1,7 @@
 /*------------------ORDER DETAILS--------------*/
 .details-body {
     margin:20px 0px;
-    /* border: 1px dashed blue; */
-    padding: 4px;
+    border: 1px dashed blue;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -10,16 +9,19 @@
 }
 
 .body-left {
-    background-color: rgb(233, 233, 233);
+    background-color: rgb(241, 241, 241);
     border: 1px solid darkgray;
     border-radius: 8px;
-    width: 40%;
-    padding: 4px 8px;
+    width: 45%;
+    min-width: 330px;
+    padding: 8px 4px 4px 4px;
+    margin-bottom: 40px;
 }
 
 .body-right {
-    /* border: 1px solid green; */
-    width: 55%;
+    border: 1px solid green;
+    width: 50%;
+    min-width: 330px;
     padding: 4px 8px;
 }
 
