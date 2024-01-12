@@ -7,11 +7,10 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order }) => {
         delivery: order.delivery,
     });
 
-    useEffect(() => { 
-        if(order.delivery) { updatedObj.delivery = order.delivery}
-    }, [order]);
+    const refreshOrder = () => {
+        setOrder(updatedObj);
+    }
 
-    
     return !order 
     ? <div className="spinner-div">
         <RingLoader
@@ -37,7 +36,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order }) => {
                                 onClick={() => {
                                     const copy = {...updatedObj}
                                     copy.delivery = true
-                                    setUpdatedObj(copy)
+                                    setUpdatedObj(copy).then(() => refreshOrder());
                                 }}
                             />Delivery
                         </div>
@@ -52,8 +51,21 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order }) => {
                                 }}
                             />Delivery
                         </div>
-                    } 
-                    <div>
+                    }
+                    {order.delivery === false 
+                    ? <div>
+                        <input 
+                            name="type" 
+                            type="radio"
+                            defaultChecked
+                            onClick={() => {
+                                const copy = {...updatedObj}
+                                copy.delivery = false;
+                                setUpdatedObj(copy);
+                            }}
+                        />Dine-In/Take-Out
+                    </div>
+                    : <div>
                         <input 
                             name="type" 
                             type="radio"
@@ -64,6 +76,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order }) => {
                             }}
                         />Dine-In/Take-Out
                     </div>
+                    }
                 </div>
         </fieldset>
         <fieldset className="form-control">
