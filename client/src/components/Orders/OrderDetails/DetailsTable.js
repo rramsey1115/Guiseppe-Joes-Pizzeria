@@ -64,7 +64,7 @@ export const DetailsTable = ({ order, updatedObj }) => {
                     {/* shows Deliver, Dine-In, or Take-Out based on delivery and table number */}
                     {updatedObj.delivery 
                     ? <td>Delivery</td> 
-                    : updatedObj.tableNumber === 10 ? <td>Take-Out</td> : <td>Dine-In</td>}
+                    : updatedObj.tableNumber*1 === 10 ? <td>Take-Out</td> : <td>Dine-In</td>}
                 </tr>
                 {/* shows delivery address and driver OR table number */}
                 {updatedObj.delivery 
@@ -80,11 +80,11 @@ export const DetailsTable = ({ order, updatedObj }) => {
                     </tr>
                     </>
                 : 
-                updatedObj.tableNumber === 10 
-                ? null 
+                updatedObj.tableNumber*1 === 10 
+                ? null
                 : <tr>
                     <th>Table</th>
-                    <td>{updatedObj.tableNumber}</td>
+                    <td>{updatedObj.tableNumber*1  === 10 ? `Take-Out` : `${updatedObj.tableNumber}`}</td>
                 </tr> }
                 
                 {/* map over updatedObjpizzas and make row for each pizza with all info about pizza */}

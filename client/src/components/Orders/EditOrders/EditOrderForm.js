@@ -8,7 +8,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
         {
             updatedObj.delivery = order.delivery;
             updatedObj.address = order.address;
-            
+            updatedObj.tableNumber = order.tableNumber*1;
         }
     }, [order]);
 
@@ -97,10 +97,10 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
         </fieldset>
         <fieldset className="form-control">
             <h5>Table</h5>
-            <select onSelect={(e) => {
+            <select onChange={(e) => {
                 const copy = {...updatedObj}
-                copy.tableNumber = e.target.value;
-                setUpdatedObj(copy)
+                copy.tableNumber = e.target.value*1;
+                setUpdatedObj(copy);
             }}>
                 <option value={0}>Table #</option>
                 <option value={1}>1</option>
