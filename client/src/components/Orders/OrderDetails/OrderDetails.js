@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import RingLoader from "react-spinners/RingLoader"
 import "./OrderDetails.css";
 import { DetailsTable } from "./DetailsTable";
-import { EditOrderForm } from "./Form/EditOrderForm";
+import { EditOrderForm } from "../EditOrders/EditOrderForm";
 
 export const OrderDetails = () => {
     const id = useParams().id;
