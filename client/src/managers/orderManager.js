@@ -14,7 +14,7 @@ export const postNewOrder = (obj) => {
     }).then(res => res.json());
 }
 
-export const editOrderById = (obj, id) => {
+export const editOrderById = (id, obj) => {
     return fetch(`/api/order/${id}`, {
         method: "PUT",
         headers: { "Content-Type":"application/json" },
@@ -22,8 +22,8 @@ export const editOrderById = (obj, id) => {
     }).then(res => res.json());
 }
 
-export const completeOrder = (obj, id) => {
-    return fetch(`/api/order/${id}/complete`, {
+export const completeOrder = (orderId, obj) => {
+    return fetch(`/api/order/${orderId}/complete`, {
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body: JSON.stringify(obj)

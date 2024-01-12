@@ -188,21 +188,24 @@ public class OrderController : ControllerBase
 
     [HttpPut("{id}/complete")]
     [Authorize]
-    public IActionResult Complete(Order obj, int id)
+    public IActionResult Complete(int orderId, Order obj)
     {
         try
         {
 
-            Order o = _dbContext.Orders.FirstOrDefault(o => o.Id == id);
+            Order o = _dbContext.Orders.FirstOrDefault(o => o.Id == orderId);
+
             if ( o == null )
             {
-                return NotFound("no order with given id found");
+                return NotFound("No order with given id found");
             }
 
             o.Tip = obj.Tip;
             o.CompletedOnDate = DateTime.Now;
-            if(obj.Delivery == true)
+
+            if(obj.DriverId != null && obj.Address != null)
             {
+                o.Delivery = true;
                 o.DriverId = obj.DriverId;
                 o.Address = obj.Address;
             }
