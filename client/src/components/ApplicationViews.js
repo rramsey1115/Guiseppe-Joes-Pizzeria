@@ -8,7 +8,7 @@ import { CreateDeliveryOrder } from "./Orders/CreateOrders/CreateDeliveryOrder";
 import { CreateDineInOrder } from "./Orders/CreateOrders/CreateDineInOrder";
 import { ChooseOrderType } from "./Orders/CreateOrders/ChooseOrderType";
 import { OrderDetails } from "./Orders/OrderDetails/OrderDetails";
-import { CompleteOrder } from "./Orders/OrderDetails/CompleteOrder";
+import { CompleteOrder } from "./Orders/CompleteOrders/CompleteOrder";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
