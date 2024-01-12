@@ -21,13 +21,17 @@
     padding: 4px 8px;
 }
 
+.body-right-btn {
+    border-bottom: thin solid black;
+}
+
 .hidden-div {
     transition: ease-in-out .5s;
 }
 
 #edit-form-btn {
     width: 200px;
-    margin: 0px 0px 20px 0px;
+    margin: 0px 0px 8px 0px;
 }
 
 /* -----------------DETAILS TABLE------------- */
