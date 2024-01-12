@@ -1,7 +1,8 @@
-export const EditPizza = ({ pizza }) => {
+export const EditPizza = ({ pizza, setUpdatedObj }) => {
+   
     return(
         <div className="edit-pizza">
-            <h5>Edit Pizza</h5>
+            <h5>Edit Pizza {pizza.id}</h5>
         </div>
     )
 }

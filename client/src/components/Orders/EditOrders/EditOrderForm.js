@@ -1,9 +1,10 @@
 import RingLoader from "react-spinners/RingLoader";
 import "./EditOrderForm.css";
 import { useEffect } from "react";
+import { EditPizza } from "./EditPizza";
 
 export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, updatedObj }) => {
-
+    let pizzaCount = 0;
     useEffect(() => {if(order.delivery)
         {
             updatedObj.delivery = order.delivery;
@@ -23,7 +24,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
     </div>
     : (
     <form autoComplete="true" className="edit-details-form">
-        
+        {/* ---------------------------------- change order type radio buttons ------------------------- */}
         {updatedObj.delivery === true 
         ? 
         <><fieldset className="form-control">
@@ -54,6 +55,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
                 </div>
             </div>
         </fieldset>
+        {/* ---------------------------------- Change Address if order is delivery ------------------------------------- */}
         <fieldset className="form-control">
                 <label>Address
                     <input 
@@ -95,13 +97,17 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
                 </div>
             </div>
         </fieldset>
+
+        {/* ------------------------- change table if order is dine-in/take-out ------------------------- */}
         <fieldset className="form-control">
             <h5>Table</h5>
-            <select onChange={(e) => {
-                const copy = {...updatedObj}
-                copy.tableNumber = e.target.value*1;
-                setUpdatedObj(copy);
-            }}>
+            <select 
+                onChange={(e) => {
+                    const copy = {...updatedObj}
+                    copy.tableNumber = e.target.value*1;
+                    setUpdatedObj(copy);
+                }}
+            >
                 <option value={0}>Table #</option>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
@@ -116,8 +122,19 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
             </select>
         </fieldset>
         </>}
- 
 
+
+        {/* --------------- import the pizza editor for each pizza in the order -------------------------------- */}
+        {updatedObj.orderPizzas?.map(pizza => {
+            pizzaCount++;
+            return (
+                <fieldset key={pizza.id} className="form-control">
+                <h5>Pizza {pizzaCount}</h5>
+                    <EditPizza  pizza={pizza} updatedObj={updatedObj} setUpdatedObj={setUpdatedObj}/>
+                </fieldset>
+            )
+        })}
+ 
 
     </form>)
 }
