@@ -2,6 +2,7 @@ import RingLoader from "react-spinners/RingLoader";
 import "./EditOrderForm.css";
 import { useEffect } from "react";
 import { EditPizza } from "./EditPizza";
+import { EditToppings } from "./EditToppings";
 
 export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, updatedObj }) => {
     let pizzaCount = 0;
@@ -131,7 +132,8 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
             return (
                 <fieldset key={pizza.id} className="form-control">
                 <h5>Pizza {pizzaCount}</h5>
-                    <EditPizza index={pizzaCount - 1} pizza={pizza} updatedObj={updatedObj} setUpdatedObj={setUpdatedObj}/>
+                    <EditPizza index={pizzaCount - 1} updatedObj={updatedObj} setUpdatedObj={setUpdatedObj}/>
+                    <EditToppings index={pizzaCount - 1} updatedObj={updatedObj} setUpdatedObj={setUpdatedObj}/>
                 </fieldset>
             )
         })}
