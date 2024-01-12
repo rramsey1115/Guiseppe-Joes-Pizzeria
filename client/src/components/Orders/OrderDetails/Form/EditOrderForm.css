@@ -1,0 +1,8 @@
+.edit-details-form {
+    padding: 10px;
+}
+
+.radios {
+    display: flex;
+    flex-direction: row;
+}

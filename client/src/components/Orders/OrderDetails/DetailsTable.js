@@ -37,7 +37,7 @@ export const DetailsTable = ({ order }) => {
     </div>
     : (
     <div className="details-table-div">
-        {console.log(order)}
+        
         <header className="details-table-header">
             <h4>Order No. {order.id}</h4>
         </header>
