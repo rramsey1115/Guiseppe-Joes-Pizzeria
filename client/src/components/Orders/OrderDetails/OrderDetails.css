@@ -10,6 +10,7 @@
 }
 
 .body-left {
+    background-color: rgb(233, 233, 233);
     border: 1px solid darkgray;
     border-radius: 8px;
     width: 40%;
@@ -17,7 +18,7 @@
 }
 
 .body-right {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     width: 55%;
     padding: 4px 8px;
 }
@@ -48,13 +49,13 @@ tr {
 }
 
 th {
-    padding: 5px;
-    width: 40%;
+    padding: 5px 2px;
+    width: 35%;
 }
 
 td {
     padding: 5px;
-    width: 58%;
+    width: 65%;
 }
 
 /* --------------EDIT DETAILS FORM------------------ */

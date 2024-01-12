@@ -38,18 +38,20 @@ export const OrderDetails = () => {
             <section className="body-right">
 
                 <div className="body-right-btn">
-                    <button 
+                    {order.completedOnDate === null 
+                    ?<button 
                         id="edit-form-btn"
                         className="green-btn"
                         onClick={() => setFormOpen(!formOpen)}
                         >Edit Order
-                    </button>
+                    </button> 
+                    : <h4>Order Complete</h4>}
                 </div>
 
                 <div className="hidden-div" hidden={formOpen ? false : true }>
                     <EditOrderForm setFormOpen={setFormOpen} setOrder={setOrder} order={order}/>
                 </div>
-                
+
             </section>
 
         </section>

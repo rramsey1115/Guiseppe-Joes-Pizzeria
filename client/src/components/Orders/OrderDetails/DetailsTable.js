@@ -58,7 +58,7 @@ export const DetailsTable = ({ order }) => {
                     <th>Complete</th>
                     {order.completedOnDate 
                     ? <td>{getFormattedDate(order.completedOnDate)}{' '}{getFormattedTime(order.completedOnDate)}</td> 
-                    : <td style={{color:'red', fontWeight:'bold'}}>No</td>} 
+                    : <td style={{color:'red'}}>No</td>} 
                 </tr>  
                 <tr>
                     <th>Type</th>
@@ -103,13 +103,14 @@ export const DetailsTable = ({ order }) => {
                                 }) : " - None"}
                             </td>
                             <td>
+                                {order.completedOnDate !== null ? null : 
                                 <button 
                                     className="red-btn" 
                                     style={{width:45, height:25, alignContent:"center"}}
                                     value={p.id}
                                 >
                                     <ImCross style={{height:'20px', paddingBottom:'6px', paddingTop:'0px'}}/>
-                                </button>
+                                </button>}
                             </td>
                         </tr>
                     )
@@ -123,8 +124,8 @@ export const DetailsTable = ({ order }) => {
 
                 {order.completedOnDate === null ? null : <tr><th>Tip</th><td>{`$${order.tip.toFixed(2)}`}</td></tr> }
                 <tr style={{borderBottom:'none'}}>
-                    <th>{order.completedOnDate !== null ? "Paid" : "Total"}</th>
-                    <th style={{color:'var(--green)', fontWeight:"bold"}}>{`$${order.totalCost.toFixed(2)}`}</th>
+                    <th style={{paddingTop:'10px', fontSize:'20px'}}>{order.completedOnDate !== null ? "Paid" : "Total"}</th>
+                    <th style={{color:'var(--green)', fontWeight:"bold", paddingTop:'10px', fontSize:'20px'}}>{`$${order.totalCost.toFixed(2)}`}</th>
                 </tr>
             </tbody>
         </table>
