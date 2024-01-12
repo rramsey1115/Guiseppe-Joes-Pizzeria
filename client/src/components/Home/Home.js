@@ -1,11 +1,19 @@
 import "./Home.css";
 import homeLogo from "../../images/Guiseppe_Joes_Logo.png";
 import { useNavigate } from "react-router-dom";
+import RingLoader from "react-spinners/RingLoader";
 
-export const Home = () => {
+export const Home = ({loggedInUser}) => {
     const navigate = useNavigate();
 
-    return(
+    return(loggedInUser.name ? <div className="spinner-div">
+    <RingLoader
+        color="#11b351"
+        loading
+        size={80}
+        speedMultiplier={2}
+    />
+</div>:
     <div className="container">
         <div className="body">
             <section className="home-img-container">
