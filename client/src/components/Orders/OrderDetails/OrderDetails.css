@@ -1,7 +1,7 @@
 /*------------------ORDER DETAILS--------------*/
 .details-body {
     margin:20px 0px;
-    border: 1px dashed blue;
+    /* border: 1px dashed blue; */
     padding: 4px;
     display: flex;
     flex-direction: row;
@@ -10,8 +10,9 @@
 }
 
 .body-left {
-    border: 1px solid red;
-    width: 35%;
+    border: 1px solid darkgray;
+    border-radius: 8px;
+    width: 40%;
     padding: 4px 8px;
 }
 
@@ -37,6 +38,23 @@
 /* -----------------DETAILS TABLE------------- */
 .details-table-header {
     border-bottom: thin solid black;
+}
+
+tr {
+    height: 40px;
+
+    border-bottom: 1px solid darkgray;
+    vertical-align: top;
+}
+
+th {
+    padding: 5px;
+    width: 40%;
+}
+
+td {
+    padding: 5px;
+    width: 58%;
 }
 
 /* --------------EDIT DETAILS FORM------------------ */

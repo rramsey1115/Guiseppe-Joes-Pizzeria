@@ -1,4 +1,5 @@
 import RingLoader from "react-spinners/RingLoader";
+import { ImCross } from "react-icons/im";
 import { Table } from "reactstrap";
 
 export const DetailsTable = ({ order }) => {
@@ -40,7 +41,7 @@ export const DetailsTable = ({ order }) => {
         <header className="details-table-header">
             <h4>Order No. {order.id}</h4>
         </header>
-        <Table id="details-table">
+        <table id="details-table">
             <tbody>
                 <tr>
                     <th>Date</th>
@@ -55,7 +56,9 @@ export const DetailsTable = ({ order }) => {
                 </tr>
                 <tr>
                     <th>Complete</th>
-                    {order.completedOnDate ? <td>Yes</td> : <td style={{color:'red'}}>No</td>}
+                    {order.completedOnDate 
+                    ? <td>{getFormattedDate(order.completedOnDate)}{' '}{getFormattedTime(order.completedOnDate)}</td> 
+                    : <td style={{color:'red', fontWeight:'bold'}}>No</td>} 
                 </tr>  
                 <tr>
                     <th>Type</th>
@@ -99,6 +102,15 @@ export const DetailsTable = ({ order }) => {
                                     return <div key={t.id}>{" - "}{t.topping.name}<br/></div>
                                 }) : " - None"}
                             </td>
+                            <td>
+                                <button 
+                                    className="red-btn" 
+                                    style={{width:45, height:25, alignContent:"center"}}
+                                    value={p.id}
+                                >
+                                    <ImCross style={{height:'20px', paddingBottom:'6px', paddingTop:'0px'}}/>
+                                </button>
+                            </td>
                         </tr>
                     )
                 })}
@@ -109,12 +121,12 @@ export const DetailsTable = ({ order }) => {
                     <td>$5.00</td>
                 </tr> : null}
 
-                {order.tip === null ? null : <tr><th>Tip</th><td>{`$${order.tip.toFixed(2)}`}</td></tr> }
-                <tr>
+                {order.completedOnDate === null ? null : <tr><th>Tip</th><td>{`$${order.tip.toFixed(2)}`}</td></tr> }
+                <tr style={{borderBottom:'none'}}>
                     <th>{order.completedOnDate !== null ? "Paid" : "Total"}</th>
-                    <td>{`$${order.totalCost.toFixed(2)}`}</td>
+                    <th style={{color:'var(--green)', fontWeight:"bold"}}>{`$${order.totalCost.toFixed(2)}`}</th>
                 </tr>
             </tbody>
-        </Table>
+        </table>
     </div>)
 }
