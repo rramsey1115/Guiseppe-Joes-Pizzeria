@@ -1,3 +1,4 @@
+/*------------------ORDER DETAILS--------------*/
 .details-body {
     margin:20px 0px;
     border: 1px dashed blue;
@@ -20,6 +21,19 @@
     padding: 4px 8px;
 }
 
-.details-header {
+.hidden-div {
+    transition: ease-in-out .5s;
+}
+
+#edit-form-btn {
+    width: 200px;
+    margin: 0px 0px 20px 0px;
+}
+
+/* -----------------DETAILS TABLE------------- */
+.details-table-header {
     border-bottom: thin solid black;
 }
+
+
+/* --------------EDIT DETAILS FORM------------------ */

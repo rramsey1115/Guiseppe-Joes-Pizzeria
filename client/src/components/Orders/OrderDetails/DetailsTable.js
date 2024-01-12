@@ -33,8 +33,8 @@ export const DetailsTable = ({ order }) => {
         />
     </div>
     : (
-    <div className="details">
-        <header className="details-header">
+    <div className="details-table-div">
+        <header className="details-table-header">
             <h4>Order No. {order.id}</h4>
         </header>
         <Table id="details-table">

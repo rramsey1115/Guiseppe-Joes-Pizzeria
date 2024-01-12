@@ -36,7 +36,17 @@ export const OrderDetails = () => {
 
                 {/* form to open when button clicked - change values on left side */}
             <section className="body-right">
-                <EditOrderForm setFormOpen={setFormOpen} setOrder={setOrder} order={order}/>
+                <div className="body-right-button">
+                    <button 
+                        id="edit-form-btn"
+                        className="green-btn"
+                        onClick={() => setFormOpen(!formOpen)}
+                        >Edit Order
+                    </button>
+                </div>
+                <div className="hidden-div" hidden={formOpen ? false : true }>
+                    <EditOrderForm setFormOpen={setFormOpen} setOrder={setOrder} order={order}/>
+                </div>
             </section>
 
         </section>
