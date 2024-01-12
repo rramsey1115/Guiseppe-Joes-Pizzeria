@@ -24,6 +24,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
     </div>
     : (
     <form autoComplete="true" className="edit-details-form">
+        
         {/* ---------------------------------- change order type radio buttons ------------------------- */}
         {updatedObj.delivery === true 
         ? 
@@ -55,6 +56,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
                 </div>
             </div>
         </fieldset>
+
         {/* ---------------------------------- Change Address if order is delivery ------------------------------------- */}
         <fieldset className="form-control">
                 <label>Address
@@ -122,7 +124,6 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
             </select>
         </fieldset>
         </>}
-
 
         {/* --------------- import the pizza editor for each pizza in the order -------------------------------- */}
         {updatedObj.orderPizzas?.map(pizza => {
