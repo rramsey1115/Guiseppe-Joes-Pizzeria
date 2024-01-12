@@ -24,7 +24,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
     </div>
     : (
     <form autoComplete="true" className="edit-details-form">
-        
+
         {/* ---------------------------------- change order type radio buttons ------------------------- */}
         {updatedObj.delivery === true 
         ? 
@@ -131,7 +131,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
             return (
                 <fieldset key={pizza.id} className="form-control">
                 <h5>Pizza {pizzaCount}</h5>
-                    <EditPizza  pizza={pizza} updatedObj={updatedObj} setUpdatedObj={setUpdatedObj}/>
+                    <EditPizza index={pizzaCount - 1} pizza={pizza} updatedObj={updatedObj} setUpdatedObj={setUpdatedObj}/>
                 </fieldset>
             )
         })}

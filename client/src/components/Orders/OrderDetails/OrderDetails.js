@@ -45,14 +45,9 @@ export const OrderDetails = () => {
                     ?<div>
                         <button 
                             id="edit-form-btn"
-                            className="light-btn"
+                            className="green-btn"
                             onClick={() => setFormOpen(!formOpen)}
                             >Edit Order
-                        </button> 
-                        <button
-                            id="edit-form-btn"
-                            className="green-btn"
-                            >Complete Order
                         </button>
                     </div>
                     : <h4>Order Complete</h4>}
