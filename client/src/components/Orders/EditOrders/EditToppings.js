@@ -1,25 +1,39 @@
 import { useEffect, useState } from "react"
-import { getToppings } from "../../../managers/optionsManager";
+import { getPizzaToppings, getToppings } from "../../../managers/optionsManager";
 
 export const EditToppings = ({index, updatedObj, setUpdatedObj}) => {
     const [toppings, setToppings] = useState([]);
+    const [pizzaToppings, setPizzaToppings] = useState([]);
+    const [idCount, setIdCount] = useState(0);
 
     useEffect(() => {
         getAndSetToppings();
+        getAndSetPizzaToppings();
     }, [index]);
 
     const getAndSetToppings = () => {
         getToppings().then(setToppings);
     }
 
-    const removeTopping = (toppingId) => {
-        console.log(`Removed toppingId ${toppingId}`)
+    const getAndSetPizzaToppings = () => {
+        getPizzaToppings().then(setPizzaToppings);
     }
 
-    const addTopping = (toppingId) => {
-        console.log(`added toppingId ${toppingId}`)
+    const removeTopping = (id) => {
+        const copy = {...updatedObj}
+        var resArr = copy.orderPizzas[index].pizzaToppings.filter(top => top.toppingId !== id);
+        copy.orderPizzas[index].pizzaToppings = resArr;
+        setUpdatedObj(copy);
     }
 
+    const addTopping = (tId) => {
+        setIdCount(idCount + 1);
+        const copy = {...updatedObj}
+        const newTopping = toppings.filter(top => top.id === tId)
+        const newPT = { id:pizzaToppings.length + idCount, pizzaId:copy.orderPizzas[index].id, toppingId:tId, topping:newTopping[0] }
+        copy.orderPizzas[index].pizzaToppings.push(newPT);
+        setUpdatedObj(copy);
+    }
 
     return(
         <div className="toppings-checkboxes">

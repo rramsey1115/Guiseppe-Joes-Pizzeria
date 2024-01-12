@@ -72,5 +72,19 @@ public class PizzaOptionsController : ControllerBase
         }
     }
 
+    [HttpGet("pizzatopping")]
+    [Authorize]
+    public IActionResult GetPizzaToppings()
+    {
+        try
+        {
+            return Ok(_dbContext.PizzaToppings);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"{ex}");
+        }
+    }
+
 
 }
