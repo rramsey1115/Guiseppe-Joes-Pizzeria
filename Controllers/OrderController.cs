@@ -128,7 +128,6 @@ public class OrderController : ControllerBase
                     Id = found.Employee.Id,
                     FirstName = found.Employee.FirstName,
                     LastName = found.Employee.LastName,
-                    Address = found.Employee.Address,
                     IdentityUserId = found.Employee.IdentityUserId,
                     IdentityUser = found.Employee.IdentityUser
                 },
