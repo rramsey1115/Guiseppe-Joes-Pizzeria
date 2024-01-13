@@ -110,7 +110,7 @@ public class OrderController : ControllerBase
             .Include(o => o.OrderPizzas).ThenInclude(op => op.Sauce)
             .Include(o => o.OrderPizzas).ThenInclude(op => op.Cheese)
             .Include(o => o.OrderPizzas).ThenInclude(op => op.PizzaToppings).ThenInclude(pt => pt.Topping)
-            .Include(o => o.Employee)
+            .Include(o => o.Employee).ThenInclude(e => e.IdentityUser)
             .Include(o => o.Driver)
             .SingleOrDefault(o => o.Id == id);
 
@@ -123,11 +123,14 @@ public class OrderController : ControllerBase
             {
                 Id = found.Id,
                 EmployeeId = found.EmployeeId,
-                Employee = new UserProfileDTO 
+                Employee = new UserProfileDTO
                 {
                     Id = found.Employee.Id,
                     FirstName = found.Employee.FirstName,
-                    LastName = found.Employee.LastName
+                    LastName = found.Employee.LastName,
+                    Address = found.Employee.Address,
+                    IdentityUserId = found.Employee.IdentityUserId,
+                    IdentityUser = found.Employee.IdentityUser
                 },
                 PlacedOnDate = found.PlacedOnDate,
                 CompletedOnDate = found.CompletedOnDate,
@@ -245,24 +248,25 @@ public class OrderController : ControllerBase
             if (obj.Delivery == true)
             {
                 o.Delivery = true;
-                o.DriverId = obj.DriverId;
                 o.Address = obj.Address;
                 o.TableNumber = 0;
             }
             else
             {
                 o.Delivery = false;
-                o.DriverId = null;
-                o.Address = null;
+                // o.DriverId = null;
+                // o.Address = null;
                 o.TableNumber = obj.TableNumber;
             }
 
+            o.OrderPizzas = obj.OrderPizzas;
+
             _dbContext.SaveChanges();
-            return Created($"api/Order/{o.Id}", o);
+            return NoContent();
         }
         catch ( Exception ex)
         {
-            return BadRequest($"Bad data: {ex}");
+            return BadRequest($"{ex}");
         }
     }
 

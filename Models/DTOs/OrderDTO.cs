@@ -6,7 +6,7 @@ public class OrderDTO
     public int Id { get; set; }
     public int EmployeeId { get; set; }
     [ForeignKey("EmployeeId")]
-    public UserProfileDTO Employee { get; set; }
+    public UserProfileDTO? Employee { get; set; }
     public DateTime PlacedOnDate { get; set; }
      public DateTime? CompletedOnDate { get; set; }
     public bool Delivery { get; set; }

@@ -3,9 +3,13 @@ import "./EditOrderForm.css";
 import { useEffect } from "react";
 import { EditPizza } from "./EditPizza";
 import { EditToppings } from "./EditToppings";
+import { editOrderById } from "../../../managers/orderManager";
+import { useNavigate } from "react-router-dom";
 
 export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, updatedObj }) => {
+
     let pizzaCount = 0;
+
     useEffect(() => {if(order.delivery)
         {
             updatedObj.delivery = order.delivery;
@@ -13,6 +17,12 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
             updatedObj.tableNumber = order.tableNumber*1;
         }
     }, [order]);
+
+    const navigate = useNavigate();
+
+    const handleSubmit = () => {
+        editOrderById(order.id, updatedObj).then((res) => console.log(res) ).then(() => navigate('/orders'));
+    };
 
     return !updatedObj
     ? <div className="spinner-div">
@@ -24,7 +34,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
             />
     </div>
     : (
-    <form autoComplete="true" className="edit-details-form">
+    <><form autoComplete="true" className="edit-details-form">
 
         {/* ---------------------------------- change order type radio buttons ------------------------- */}
         {updatedObj.delivery === true 
@@ -63,6 +73,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
                 <label>Address
                     <input 
                         type="text" 
+                        name="address"
                         value={updatedObj?.address}
                         onChange={(e) => {
                         const copy = {...updatedObj}
@@ -105,6 +116,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
         <fieldset className="form-control">
             <h5>Table</h5>
             <select 
+                name="table"
                 onChange={(e) => {
                     const copy = {...updatedObj}
                     copy.tableNumber = e.target.value*1;
@@ -138,6 +150,8 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
             )
         })}
  
-
-    </form>)
+    </form>
+    <button className="green-btn" onClick={(e) => handleSubmit()}>Save</button>
+    </>
+    )
 }
