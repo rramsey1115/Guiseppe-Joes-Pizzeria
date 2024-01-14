@@ -45,7 +45,7 @@ export const EditPizza = ({ index, setUpdatedObj, updatedObj }) => {
                         copy.orderPizzas[index].cheese = cheeses.find(c => c.id === e.target.value*1)
                         setUpdatedObj(copy);
                     }}
-                    value={updatedObj.orderPizzas[index].sauceId}
+                    value={updatedObj.orderPizzas[index].cheeseId}
                     name="cheese"
                     >
                 {cheeses.map(c => { return( 

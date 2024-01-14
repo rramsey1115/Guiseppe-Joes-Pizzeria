@@ -100,7 +100,7 @@ export const DetailsTable = ({ order, updatedObj }) => {
                                 <span style={{textDecoration:"underline"}}>Toppings</span> <br/>
                                 {p.pizzaToppings?.length > 0 
                                 ? p.pizzaToppings?.map(t => {
-                                    return <div key={t.id}>{" - "}{t.topping.name}<br/></div>
+                                    return <div key={t.toppingId}>{" - "}{t.topping.name}<br/></div>
                                 }) : " - None"}
                             </td>
                             <td>
