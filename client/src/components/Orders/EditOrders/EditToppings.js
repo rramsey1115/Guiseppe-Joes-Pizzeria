@@ -4,7 +4,7 @@ import { getPizzaToppings, getToppings } from "../../../managers/optionsManager"
 export const EditToppings = ({index, updatedObj, setUpdatedObj}) => {
     const [toppings, setToppings] = useState([]);
     const [pizzaToppings, setPizzaToppings] = useState([]);
-    const [idCount, setIdCount] = useState(0);
+    const idCount = 0;
 
     useEffect(() => {
         getAndSetToppings();
@@ -27,13 +27,15 @@ export const EditToppings = ({index, updatedObj, setUpdatedObj}) => {
     }
 
     const addTopping = (tId) => {
-        setIdCount(idCount + 1);
+
         const copy = {...updatedObj}
         const newTopping = toppings.filter(top => top.id === tId)
-        const newPT = { id:pizzaToppings.length + idCount, pizzaId:copy.orderPizzas[index].id, toppingId:tId, topping:newTopping[0] }
+        const newPT = { pizzaId:copy.orderPizzas[index].id, toppingId:tId, topping:newTopping[0] }
         copy.orderPizzas[index].pizzaToppings.push(newPT);
         setUpdatedObj(copy);
     }
+
+
 
     return(
         <div className="toppings-checkboxes">
