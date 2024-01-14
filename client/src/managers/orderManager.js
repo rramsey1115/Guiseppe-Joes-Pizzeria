@@ -19,7 +19,7 @@ export const editOrderById = (id, obj) => {
         method: "PUT",
         headers: { "Content-Type":"application/json" },
         body: JSON.stringify(obj)
-    }).then(res => res.json());
+    });
 }
 
 export const completeOrder = (orderId, obj) => {

@@ -119,15 +119,15 @@ export const DetailsTable = ({ order, updatedObj }) => {
                 })}
 
 
-                {order.delivery ? <tr>
+                {updatedObj.delivery ? <tr>
                     <th>Fees</th>
                     <td>$5.00</td>
                 </tr> : null}
 
-                {order.completedOnDate === null ? null : <tr><th>Tip</th><td>{`$${order.tip.toFixed(2)}`}</td></tr> }
+                {updatedObj.completedOnDate === null ? null : <tr><th>Tip</th><td>{`$${updatedObj.tip.toFixed(2)}`}</td></tr> }
                 <tr style={{borderBottom:'none'}}>
-                    <th>{order.completedOnDate !== null ? "Paid" : "Total"}</th>
-                    <th style={{color:'var(--green)', fontWeight:"bold"}}>{`$${order.totalCost.toFixed(2)}`}</th>
+                    <th>{updatedObj.completedOnDate !== null ? "Paid" : "Total"}</th>
+                    <th style={{color:'var(--green)', fontWeight:"bold"}}>{`$${updatedObj.totalCost.toFixed(2)}`}</th>
                 </tr>
             </tbody>
         </table>

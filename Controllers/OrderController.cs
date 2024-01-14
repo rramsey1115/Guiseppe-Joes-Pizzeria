@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using GuiseppeJoes.Data;
 using GuiseppeJoes.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -128,6 +129,7 @@ public class OrderController : ControllerBase
                     Id = found.Employee.Id,
                     FirstName = found.Employee.FirstName,
                     LastName = found.Employee.LastName,
+                    Address = found.Employee.Address,
                     IdentityUserId = found.Employee.IdentityUserId,
                     IdentityUser = found.Employee.IdentityUser
                 },
@@ -253,12 +255,27 @@ public class OrderController : ControllerBase
             else
             {
                 o.Delivery = false;
-                // o.DriverId = null;
-                // o.Address = null;
+                o.DriverId = null;
+                o.Address = null;
                 o.TableNumber = obj.TableNumber;
             }
 
-            o.OrderPizzas = obj.OrderPizzas;
+            List<Pizza> holder = obj.OrderPizzas.Select(p => {
+                return new Pizza
+                {
+                    Id = p.Id,
+                    SauceId = p.SauceId,
+                    CheeseId = p.CheeseId,
+                    SizeId = p.SizeId,
+                    PizzaToppings = p.PizzaToppings.Select(pt => new PizzaTopping
+                    {
+                        ToppingId = pt.ToppingId,
+                        PizzaId = pt.PizzaId
+                    }).ToList()
+                };
+            }).ToList();
+
+            o.OrderPizzas = holder;
 
             _dbContext.SaveChanges();
             return NoContent();
