@@ -74,7 +74,7 @@ export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, upd
                     <input 
                         type="text" 
                         name="address"
-                        value={updatedObj?.address}
+                        value={updatedObj.address ?? ""}
                         onChange={(e) => {
                         const copy = {...updatedObj}
                         copy.address = e.target.value

@@ -27,7 +27,6 @@ export const EditToppings = ({index, updatedObj, setUpdatedObj}) => {
     }
 
     const addTopping = (tId) => {
-
         const copy = {...updatedObj}
         const newTopping = toppings.filter(top => top.id === tId)
         const newPT = { pizzaId:copy.orderPizzas[index].id, toppingId:tId, topping:newTopping[0] }

@@ -261,6 +261,13 @@ public class OrderController : ControllerBase
             }
 
             List<Pizza> holder = obj.OrderPizzas.Select(p => {
+
+                // remove previous pizza toppings relationships from database, before assigning new 
+                foreach(PizzaTopping f in _dbContext.PizzaToppings)
+                {
+                    if(f.PizzaId == p.Id) {_dbContext.Remove(f);}
+                }
+
                 return new Pizza
                 {
                     Id = p.Id,
