@@ -4,6 +4,7 @@ import { getOrderById } from "../../../managers/orderManager";
 import RingLoader from "react-spinners/RingLoader";
 import { DetailsTable } from "../OrderDetails/DetailsTable";
 import { CompleteOrderForm } from "./CompleteOrderForm";
+import { CompleteDetailsTable } from "../OrderDetails/CompleteDetailsTable";
 
 export const CompleteOrder = () => {
         const id = useParams().id;
@@ -30,20 +31,13 @@ export const CompleteOrder = () => {
     
                 {/* table for order details to update with form on right side */}
                 <section className="body-left"> 
-                    <DetailsTable order={order}/>
+                    <CompleteDetailsTable order={order}/>
                 </section>
     
                 {/* form to open when button clicked - change values on left side */}
                 <section className="body-right">
 
-                <div className="body-right-btn">
-                    <button 
-                        id="edit-form-btn"
-                        className="green-btn"
-                        onClick={() => setFormOpen(!formOpen)}
-                        >Edit Order
-                    </button>
-                </div>
+
 
                 <div className="hidden-div" hidden={formOpen ? false : true }>
                     <CompleteOrderForm setFormOpen={setFormOpen} setOrder={setOrder} order={order}/>
