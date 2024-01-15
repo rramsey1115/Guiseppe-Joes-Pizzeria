@@ -9,7 +9,6 @@ import { CompleteDetailsTable } from "../OrderDetails/CompleteDetailsTable";
 export const CompleteOrder = () => {
         const id = useParams().id;
         const [order, setOrder] = useState({});
-        const [formOpen, setFormOpen] = useState(false);
     
         useEffect(() => {  if(id){getAndSetOrderById(id)} }, [id]);
     
@@ -39,8 +38,8 @@ export const CompleteOrder = () => {
 
 
 
-                <div className="hidden-div" hidden={formOpen ? false : true }>
-                    <CompleteOrderForm setFormOpen={setFormOpen} setOrder={setOrder} order={order}/>
+                <div className="hidden-div">
+                    <CompleteOrderForm order={order}/>
                 </div>
                 
             </section>

@@ -207,11 +207,9 @@ public class OrderController : ControllerBase
             o.Tip = obj.Tip;
             o.CompletedOnDate = DateTime.Now;
 
-            if(obj.DriverId != null && obj.Address != null)
+            if(obj.DriverId != null && obj.Delivery == true)
             {
-                o.Delivery = true;
                 o.DriverId = obj.DriverId;
-                o.Address = obj.Address;
             }
 
             _dbContext.SaveChanges();
