@@ -192,12 +192,16 @@ public class OrderController : ControllerBase
 
     [HttpPut("{id}/complete")]
     [Authorize]
-    public IActionResult Complete(int orderId, Order obj)
+    public IActionResult Complete(int id, Order obj)
     {
         try
         {
 
-            Order o = _dbContext.Orders.FirstOrDefault(o => o.Id == orderId);
+            Order o = _dbContext.Orders
+                .Include(o => o.Driver)
+                .Include(o => o.Employee)
+                .Include(o => o.OrderPizzas).ThenInclude(op => op.PizzaToppings).ThenInclude(pt => pt.Topping)
+                .FirstOrDefault(o => o.Id == id);
 
             if ( o == null )
             {
@@ -213,7 +217,7 @@ public class OrderController : ControllerBase
             }
 
             _dbContext.SaveChanges();
-            return Created($"api/order/${o.Id}", o);
+            return Created($"/api/orders/{o.Id}", o);
 
         }
         catch ( Exception ex )

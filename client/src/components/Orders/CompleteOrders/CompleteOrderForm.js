@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import { RingLoader } from "react-spinners";
 import { getUserProfiles } from "../../../managers/userProfilesManager";
+import { completeOrder } from "../../../managers/orderManager";
+import { useNavigate } from "react-router-dom";
 
 export const CompleteOrderForm = ({order}) => {
     const [employees, setEmployees] = useState([]);
-    const [completeObj, setCompleteObj] = useState({
-        id: order.id,
-        driverId: 0,
-        tip: 0
-    });
+    const [completeObj, setCompleteObj] = useState({});
+
+    useEffect(() => {
+        if(order) {
+            const copy = {...order}
+            setCompleteObj(copy)
+        }
+    }, [order])
 
     useEffect(() => { getAndSetEmployees() }, [])
 
@@ -16,7 +21,9 @@ export const CompleteOrderForm = ({order}) => {
         getUserProfiles().then(setEmployees);
     };
 
-    return completeObj.id ? <div className="spinner-div">
+    const navigate = useNavigate();
+
+    return !completeObj.id ? <div className="spinner-div">
     <RingLoader
         color="#11b351"
         loading
@@ -33,10 +40,14 @@ export const CompleteOrderForm = ({order}) => {
             {order.delivery === true 
             ?   <fieldset className="form-control">
                     <h5>Delivery Driver</h5>
-                    <select>
+                    <select onChange={(e) => {
+                                const copy = {...completeObj};
+                                copy.driverId = e.target.value*1;
+                                setCompleteObj(copy)}}>
                         {employees.map(e => {
                             return (
                             <option 
+                                key={e.id}
                                 value={e.id}
                             >{`${e.firstName} ${e.lastName}`}
                             </option> )
@@ -50,16 +61,23 @@ export const CompleteOrderForm = ({order}) => {
                     type="number" 
                     step={1} 
                     min={0.00}
+                    placeholder="0.00"
                     onChange={(e) => {
-                        const copy = {...order};
-                        copy.tip = e.target.value;
+                        const copy = {...completeObj};
+                        copy.tip = e.target.value*1;
                         setCompleteObj(copy);
                     }}/>
             </fieldset>
         </form>
 
         <div className="complete-form-btn">
-            <button className="green-btn">Complete</button>
+            <button 
+                className="green-btn"
+                onClick={(e) => {
+                    completeOrder(completeObj.id, completeObj).then(() => navigate('/orders'))
+                }}
+                >Complete
+            </button>
         </div>
     </div>
 }

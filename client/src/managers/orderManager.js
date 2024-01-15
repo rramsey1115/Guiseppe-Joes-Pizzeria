@@ -24,7 +24,7 @@ export const editOrderById = (id, obj) => {
 
 export const completeOrder = (orderId, obj) => {
     return fetch(`/api/order/${orderId}/complete`, {
-        method:"POST",
+        method:"PUT",
         headers:{"Content-Type":"application/json"},
         body: JSON.stringify(obj)
     }).then(res => res.json());
