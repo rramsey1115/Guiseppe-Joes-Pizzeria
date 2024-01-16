@@ -23,7 +23,7 @@ export const ChooseOrderType = ({ loggedInUser }) => {
                 <img className="choose-type-img" alt="dine-in" src={dineIn}/>
                 <button 
                     className="green-btn" 
-                    id="home-btn" onClick={(e) => navigate('create/dinein')}
+                    id="home-btn" onClick={(e) => navigate('/create/dinein')}
                     >New Dine-In Order
                 </button>
             </div>
@@ -33,7 +33,7 @@ export const ChooseOrderType = ({ loggedInUser }) => {
                 <button 
                     className="green-btn" 
                     id="home-btn"
-                    onClick={(e) => navigate('create/delivery')}
+                    onClick={(e) => navigate('/create/delivery')}
                     >New Delivery Order
                 </button>
             </div>
