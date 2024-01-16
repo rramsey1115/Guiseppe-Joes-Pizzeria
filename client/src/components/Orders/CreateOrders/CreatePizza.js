@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { getCheeses, getSauces, getSizes, getToppings } from "../../../managers/optionsManager";
+import { CreateToppings } from "./CreateToppings";
 
 export const CreatePizza = ({ newOrder, setNewOrder, pizzaCount, setPizzaOpen }) => {
     const [cheeses, setCheeses] = useState([]);
     const [sauces, setSauces] = useState([]);
     const [sizes, setSizes] = useState([]);
-    const [toppings, setToppings] = useState([]);
     const [pizza, setPizza] = useState({
         sizeId: 0,
         cheeseId: 0,
@@ -17,7 +17,6 @@ export const CreatePizza = ({ newOrder, setNewOrder, pizzaCount, setPizzaOpen })
         getCheeses().then(setCheeses);
         getSauces().then(setSauces);
         getSizes().then(setSizes);
-        getToppings().then(setToppings);
     }, []);
 
 return (
@@ -25,7 +24,7 @@ return (
     <fieldset id="size" className="form-control create">
         <h5>Size</h5>
         <select 
-            value={newOrder.orderPizzas[pizzaCount]?.sizeId}
+            value={pizza.sizeId}
             name="size"
             onChange={(e) => {
                 const copy = {...newOrder}
@@ -46,15 +45,50 @@ return (
     </fieldset>
 
     <fieldset id="sauce" className="form-control create">
-            
+        <h5>Sauce</h5>
+        <select 
+            value={pizza.sauceId}
+            name="sauce"
+            onChange={(e) => {
+                const copy = {...pizza}
+                copy.pizza.sauceId = e.target.value*1;
+                setPizza(copy);
+            }}>
+            {sauces.map(s => { return( 
+                <option 
+                    key={s.id}
+                    value={s.id}
+                    name="sauce"
+                    >{s.name} 
+            </option> )
+            })}
+        </select>
     </fieldset>
 
     <fieldset id="cheese" className="form-control create">
-            
+        <h5>Cheese</h5>
+        <select 
+            onChange={(e) => {
+                const copy = {...pizza}
+                copy.pizza.cheeseId = e.target.value*1;
+                setPizza(copy);
+            }}
+            value={pizza.cheeseId}
+            name="cheese"
+            >
+        {cheeses.map(c => { return( 
+            <option 
+                key={c.id} 
+                value={c.id}
+                name="cheese"
+            >{c.name} 
+        </option>  )
+        })}
+        </select>
     </fieldset>
 
     <fieldset id="toppings" className="form-control create">
-            
+            <CreateToppings pizza={pizza} setPizza={setPizza} pizzaCount={pizzaCount} />
     </fieldset>
 
     <fieldset id="total" className="form-control create">
@@ -77,10 +111,19 @@ return (
             }}>Add To Order
         </button>
         :<button 
-            id="add-to-order-btn"
-            className="green-btn" 
-            disabled
-            >Add To Order
+            id="discard-btn"
+            className="red-btn" 
+            onClick={(e) => {
+                e.preventDefault();
+                setPizza({
+                    sizeId: 0,
+                    cheeseId: 0,
+                    sauceId: 0,
+                    toppings: []
+                });
+                setPizzaOpen(false);
+            }}
+            >Discard
         </button>}
     </fieldset>
 
