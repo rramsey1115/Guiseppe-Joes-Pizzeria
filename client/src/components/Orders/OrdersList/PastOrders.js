@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { Button, Spinner, Table } from "reactstrap"
+import { Table } from "reactstrap"
+import RingLoader from "react-spinners/RingLoader";
 import { getAllOrders } from "../../../managers/orderManager";
+import { useNavigate } from "react-router-dom";
 
 export const PastOrders = () => {
     const [orders, setOrders] = useState([]);
@@ -13,6 +15,9 @@ export const PastOrders = () => {
             setOrders(filtered);
         });
     }
+
+    const navigate = useNavigate();
+
 
     const getFormattedDate = (dateString) => {
         const date = new Date(dateString); // {object Date}
@@ -34,29 +39,36 @@ export const PastOrders = () => {
         if (hh < 12) {return (`${hh}:${mm} AM`)};
     }
     
-    return !orders ? <Spinner/> : (
+    return !orders 
+    ? <div className="spinner-div">
+        <RingLoader
+            color="#11b351"
+            loading
+            size={80}
+            speedMultiplier={2}
+            />
+        </div> 
+    : (
         <Table>
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th>Placed On</th>
+                    <th>Time</th>
                     <th>Type</th>
                     <th>Paid</th>
-                    <th>Placed On</th>
-                    <th></th>
                     <th>Details</th>
                     <th>Completed On</th>
-                    <th></th>
+                    <th>Time</th>
                 </tr>
             </thead>
             <tbody>
                 {orders.map(o => {
                     return(<tr key={o.id}>
-                        <td>{o.id}</td>
-                        <td>{o.delivery===true ? "Delivery" : o.tableNumber !== 10 ? "Dine-In" : "Take-Out" }</td>
-                        <td>{`$${o.totalCost.toFixed(2)}`}</td>
                         <td>{getFormattedDate(o.placedOnDate)}</td>
                         <td>{getFormattedTime(o.placedOnDate)}</td>
-                        <td><Button color="secondary" size="sm">Details</Button></td>
+                        <td>{o.delivery===true ? "Delivery" : o.tableNumber !== 10 ? "Dine-In" : "Take-Out" }</td>
+                        <td>{`$${o.totalCost.toFixed(2)}`}</td>
+                        <td><button className="light-btn" value={o.id} onClick={(e) => navigate(`details/${e.target.value}`)}>Details</button></td>
                         <td>{getFormattedDate(o.completedOnDate)}</td>
                         <td>{getFormattedTime(o.completedOnDate)}</td>
                     </tr>)

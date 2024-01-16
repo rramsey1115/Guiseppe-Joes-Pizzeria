@@ -5,9 +5,6 @@ import { PastOrders } from "./PastOrders";
 export const OrdersList = () => {
     return(
     <div className="container">
-        <div className="header">
-            <h2>Orders</h2>
-        </div>
         <div className="body">
             <div className="current-orders">
                 <div className="table-header">

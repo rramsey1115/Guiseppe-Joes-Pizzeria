@@ -1,13 +1,73 @@
+:root {
+  --green:#11b351;
+  --red: #FF3131;
+  --offwhite: rgb(229, 229, 229);
+}
 
 body {
   margin: 0;
-  font-family: 'Acme', sans-serif;
+  /* font-family: 'Acme', sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: red;
 }
 
 .header {
-  margin-top: 10px;
+  margin: 10px auto 20px auto;
   border-bottom: 1px solid black;
+}
+
+.green-btn {
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: var(--green);
+  box-shadow: 1px 1px 2px 1px gray;
+  transition: ease-in-out .2s;
+}
+
+.green-btn:hover {
+  border: 1px solid black;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px 1px gray;
+  transition: ease-in-out .2s;
+  background-color: green;
+}
+
+.red-btn {
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: var(--red);
+  box-shadow: 1px 1px 2px 1px gray;
+  transition: ease-in-out .2s;
+}
+
+.red-btn:hover {
+  border: 1px solid black;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px 1px gray;
+  transition: ease-in-out .2s;
+  background-color: rgb(191, 0, 0);
+}
+
+.light-btn {
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: lightgray;
+  box-shadow: 1px 1px 2px 1px gray;
+  transition: ease-in-out .2s;
+}
+
+.light-btn:hover {
+  border: 1px solid black;
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px 1px gray;
+  transition: ease-in-out .2s;
+  background-color: gray;
+}
+
+.spinner-div {
+  width: fit-content;
+  text-align: center;
+  align-items: center;
+  margin: 10rem auto;
+  text-align: center;
 }

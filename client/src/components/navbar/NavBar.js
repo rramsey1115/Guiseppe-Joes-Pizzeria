@@ -21,11 +21,11 @@ const toggleNavbar = () => setOpen(!open);
 
 return (
     <div>
-    <Navbar style={{padding:2}} color="danger" dark fixed="true" expand="sm">
+    <Navbar style={{padding:2}} dark fixed="true" expand="sm">
         <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
             <div style={{display:"flex"}}>
-                <img style={{width:30, height:30, marginRight:8}} src={pizza} id="nav-icon" alt="pizza"/>
-                <h4>Guiseppe Joe's</h4>
+                <img src={pizza} id="nav-icon" alt="pizza"/>
+                <h4 id="nav-title">Guiseppe Joe's</h4>
             </div>
         </NavbarBrand>
         {loggedInUser ? (
@@ -45,26 +45,27 @@ return (
                 </NavItem>
             </Nav>
             </Collapse>
-            <Button
-            color="success"
-            size="sm"
-            onClick={(e) => {
-                e.preventDefault();
-                setOpen(false);
-                logout().then(() => {
-                setLoggedInUser(null);
-                setOpen(false);
-                });
-            }}
+            <button
+                className="green-btn"
+                id="nav-btn"
+                size="sm"
+                onClick={(e) => {
+                    e.preventDefault();
+                    setOpen(false);
+                    logout().then(() => {
+                    setLoggedInUser(null);
+                    setOpen(false);
+                    });
+                }}
             >
             Logout
-            </Button>
+            </button>
         </>
         ) : (
         <Nav navbar>
             <NavItem>
             <NavLink tag={RRNavLink} to="/login">
-                <Button color="success" size="sm">Login</Button>
+                <button className="green-btn" id="nav-btn" size="sm">Login</button>
             </NavLink>
             </NavItem>
         </Nav>

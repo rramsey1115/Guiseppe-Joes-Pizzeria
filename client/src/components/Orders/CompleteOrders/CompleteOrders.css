@@ -1,0 +1,43 @@
+.complete-form-control {
+    width: 400px;
+    height: 60px;
+    margin-bottom:4px;
+    border-radius: 8px;
+    padding: 4px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid lightgray;
+}
+
+.tip-input {
+    width: 190px;
+    border: thin solid black;
+    border-radius: 4px;
+    padding: 4px;
+    margin: 8px 0px 0px 0px;
+}
+
+#driver-dropdown {
+    width: 200px;
+    border-radius: 4px;
+    padding: 4px;
+    margin-left: 6px;
+}
+
+.complete-form-btn-div {
+    display: flex;
+    width: 400px;
+    align-items: center;
+    justify-content: center;
+}
+
+#complete-form-btn {
+    width: 200px;
+    height: 40px;
+    margin: 10px auto;
+}
+
+
+

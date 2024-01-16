@@ -110,7 +110,7 @@ public class OrderController : ControllerBase
             .Include(o => o.OrderPizzas).ThenInclude(op => op.Sauce)
             .Include(o => o.OrderPizzas).ThenInclude(op => op.Cheese)
             .Include(o => o.OrderPizzas).ThenInclude(op => op.PizzaToppings).ThenInclude(pt => pt.Topping)
-            .Include(o => o.Employee)
+            .Include(o => o.Employee).ThenInclude(e => e.IdentityUser)
             .Include(o => o.Driver)
             .SingleOrDefault(o => o.Id == id);
 
@@ -123,11 +123,14 @@ public class OrderController : ControllerBase
             {
                 Id = found.Id,
                 EmployeeId = found.EmployeeId,
-                Employee = new UserProfileDTO 
+                Employee = new UserProfileDTO
                 {
                     Id = found.Employee.Id,
                     FirstName = found.Employee.FirstName,
-                    LastName = found.Employee.LastName
+                    LastName = found.Employee.LastName,
+                    Address = found.Employee.Address,
+                    IdentityUserId = found.Employee.IdentityUserId,
+                    IdentityUser = found.Employee.IdentityUser
                 },
                 PlacedOnDate = found.PlacedOnDate,
                 CompletedOnDate = found.CompletedOnDate,
@@ -186,126 +189,124 @@ public class OrderController : ControllerBase
         };
     }
 
-    // [HttpPost("{id}/{userId}/complete")]
-    // [Authorize]
-    // public IActionResult Complete(int id, int userId)
-    // {
-    //     var toAdd = new ChoreCompletion
-    //     {
-    //         UserProfileId = userId,
-    //         ChoreId = id,
-    //         CompletedOn = DateTime.Now
-    //     };
+    [HttpPut("{id}/complete")]
+    [Authorize]
+    public IActionResult Complete(int id, Order obj)
+    {
+        try
+        {
 
-    //     _dbContext.ChoreCompletions.Add(toAdd);
-    //     _dbContext.SaveChanges();
-    //     return NoContent();
-    // }
+            Order o = _dbContext.Orders
+                .Include(o => o.Driver)
+                .Include(o => o.Employee)
+                .Include(o => o.OrderPizzas).ThenInclude(op => op.PizzaToppings).ThenInclude(pt => pt.Topping)
+                .FirstOrDefault(o => o.Id == id);
 
-    // [HttpPost("create")]
-    // [Authorize(Roles = "Admin")]
-    // public IActionResult Create(Chore c)
-    // {
-    //     _dbContext.Chores.Add(c);
-    //     _dbContext.SaveChanges();
-    //     return Created($"{c.Id}", c);
-    // }
+            if ( o == null )
+            {
+                return NotFound("No order with given id found");
+            }
 
-    // [HttpPut("{id}")]
-    // [Authorize(Roles = "Admin")]
-    // public IActionResult Update(int id, Chore c)
-    // {
-    //     Chore foundC = _dbContext.Chores.SingleOrDefault(c => c.Id == id);
-    //     if (foundC == null)
-    //     {
-    //         return BadRequest("Id param does not match any chore id");
-    //     }
-    //     foundC.Name = c.Name;
-    //     foundC.Difficulty = c.Difficulty;
-    //     foundC.ChoreFrequencyDays = c.ChoreFrequencyDays;
-    //     _dbContext.SaveChanges();
-    //     return Created($"api/chore/{foundC.Id}", foundC);
-    // }
+            o.Tip = obj.Tip;
+            o.CompletedOnDate = DateTime.Now;
 
-    // [HttpDelete("{id}")]
-    // [Authorize(Roles = "Admin")]
-    // public IActionResult Delete(int id)
-    // {
-    //     Chore foundC = _dbContext.Chores.SingleOrDefault(c => c.Id == id);
-    //     if (foundC == null)
-    //     {
-    //         return BadRequest("Id param does not match any chore id");
-    //     }
-    //     _dbContext.Chores.Remove(foundC);
-    //     _dbContext.SaveChanges();
-    //     return NoContent();
-    // }
+            if(obj.DriverId != null && obj.Delivery == true)
+            {
+                o.DriverId = obj.DriverId;
+            }
 
-    // [HttpPost("{id}/assign/{userId}")]
-    // [Authorize(Roles = "Admin")]
-    // public IActionResult Assign(int id, int userId)
-    // {
-    //     var assignment = new ChoreAssignment
-    //     {
-    //         UserProfileId = userId,
-    //         ChoreId = id
-    //     };
+            _dbContext.SaveChanges();
+            return Created($"/api/orders/{o.Id}", o);
 
-    //     _dbContext.ChoreAssignments.Add(assignment);
-    //     _dbContext.SaveChanges();
-    //     return NoContent();
-    // }
+        }
+        catch ( Exception ex )
+        {
+            return BadRequest($"{ex}");
+        }
 
-    // [HttpPost("{id}/unassign/{userId}")]
-    // [Authorize(Roles = "Admin")]
-    // public IActionResult Unassign(int id, int userId)
-    // {
-    //     var found = _dbContext.ChoreAssignments
-    //     .Where(ca => ca.ChoreId == id && ca.UserProfileId == userId);
+    }
 
-    //     foreach(var f in found)
-    //     {
-    //         _dbContext.ChoreAssignments.Remove(f);
-    //     }
-        
-    //     _dbContext.SaveChanges();
-    //     return NoContent();
-    // }
+    [HttpPost("create")]
+    [Authorize]
+    public IActionResult Create(Order order)
+    {
+        order.PlacedOnDate = DateTime.Now;
+        _dbContext.Orders.Add(order);
+        _dbContext.SaveChanges();
+        return Created($"api/order/{order.Id}", order);
+    }
 
-    // [HttpGet("my/{userId}")]
-    // [Authorize]
-    // public IActionResult GetMy(int userId)
-    // {
-    //     var foundAssignments = _dbContext.ChoreAssignments
-    //     .Include(c => c.Chore).ThenInclude(chore => chore.ChoreCompletions)
-    //     .Where(c => c.UserProfileId == userId);
+    [HttpPut("{id}")]
+    [Authorize]
+    public IActionResult Update(int id, Order obj)
+    {
+        try
+        {
+            Order o = _dbContext.Orders.SingleOrDefault(c => c.Id == id);
+            if (o == null)
+            {
+                return BadRequest("Id param does not match any order id");
+            }
 
-    //     if(foundAssignments == null)
-    //     {
-    //         return NoContent();
-    //     }
+            if (obj.Delivery == true)
+            {
+                o.Delivery = true;
+                o.Address = obj.Address;
+                o.TableNumber = 0;
+            }
+            else
+            {
+                o.Delivery = false;
+                o.DriverId = null;
+                o.Address = null;
+                o.TableNumber = obj.TableNumber;
+            }
 
-    //     return Ok(foundAssignments.Select(a => new ChoreAssignmentDTO
-    //     {
-    //         Id = a.Id,
-    //         UserProfileId = a.UserProfileId,
-    //         ChoreId = a.ChoreId,
-    //         Chore = new ChoreDTO
-    //         {
-    //             Id = a.Chore.Id,
-    //             Name = a.Chore.Name,
-    //             Difficulty = a.Chore.Difficulty,
-    //             ChoreFrequencyDays = a.Chore.ChoreFrequencyDays,
-    //             ChoreCompletions = a.Chore.ChoreCompletions.Select(cp => new ChoreCompletionDTO
-    //             {
-    //                 Id = cp.Id,
-    //                 UserProfileId = cp.UserProfileId,
-    //                 ChoreId = cp.ChoreId,
-    //                 CompletedOn = cp.CompletedOn
-    //             }).ToList()
-    //         }
-    //     }).ToList()
-    //     );
-        
-    // }
+            List<Pizza> holder = obj.OrderPizzas.Select(p => {
+
+                // remove previous pizza toppings relationships from database, before assigning new 
+                foreach(PizzaTopping f in _dbContext.PizzaToppings)
+                {
+                    if(f.PizzaId == p.Id) {_dbContext.Remove(f);}
+                }
+
+                return new Pizza
+                {
+                    Id = p.Id,
+                    SauceId = p.SauceId,
+                    CheeseId = p.CheeseId,
+                    SizeId = p.SizeId,
+                    PizzaToppings = p.PizzaToppings.Select(pt => new PizzaTopping
+                    {
+                        ToppingId = pt.ToppingId,
+                        PizzaId = pt.PizzaId
+                    }).ToList()
+                };
+            }).ToList();
+
+            o.OrderPizzas = holder;
+
+            _dbContext.SaveChanges();
+            return NoContent();
+        }
+        catch ( Exception ex)
+        {
+            return BadRequest($"{ex}");
+        }
+    }
+
+    [HttpDelete("{id}")]
+    [Authorize]
+    public IActionResult Delete(int id)
+    {
+        Order order = _dbContext.Orders.SingleOrDefault(o => o.Id == id);
+        if (order == null)
+        {
+            return BadRequest("Id param does not match any Order id");
+        }
+        _dbContext.Orders.Remove(order);
+        _dbContext.SaveChanges();
+        return NoContent();
+    }
+
 }

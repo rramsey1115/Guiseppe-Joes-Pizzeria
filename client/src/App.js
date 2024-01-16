@@ -5,6 +5,7 @@ import { Spinner } from "reactstrap";
 import NavBar from "./components/navbar/NavBar";
 import ApplicationViews from "./components/ApplicationViews";
 import "./index.css";
+import RingLoader from "react-spinners/RingLoader";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState();
@@ -18,7 +19,14 @@ function App() {
 
   // wait to get a definite logged-in state before rendering
   if (loggedInUser === undefined) {
-    return <Spinner />;
+    return <div className="spinner-div">
+    <RingLoader
+        color="#11b351"
+        loading
+        size={80}
+        speedMultiplier={2}
+    />
+</div>;
   }
 
   return (

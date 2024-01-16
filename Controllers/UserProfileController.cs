@@ -23,7 +23,7 @@ public class UserProfileController : ControllerBase
     {
         return Ok(_dbContext
             .UserProfiles
-            .Include(up => up.IdentityUser)
+            .OrderBy(up => up.Id)
             .Select(up => new UserProfileDTO
             {
                 Id = up.Id,
@@ -31,7 +31,6 @@ public class UserProfileController : ControllerBase
                 LastName = up.LastName,
                 Address = up.Address,
                 IdentityUserId = up.IdentityUserId,
-                Email = up.IdentityUser.Email,
                 UserName = up.IdentityUser.UserName
             })
         .ToList());

@@ -21,7 +21,7 @@ public class PizzaOptionsController : ControllerBase
     {
         try
         {
-            return Ok(_dbContext.Cheeses);
+            return Ok(_dbContext.Cheeses.OrderBy(c => c.Id));
         }
         catch (Exception ex)
         {
@@ -35,7 +35,7 @@ public class PizzaOptionsController : ControllerBase
     {
         try
         {
-            return Ok(_dbContext.Sauces);
+            return Ok(_dbContext.Sauces.OrderBy(sc => sc.Id));
         }
         catch (Exception ex)
         {
@@ -50,7 +50,7 @@ public class PizzaOptionsController : ControllerBase
     {
         try
         {
-            return Ok(_dbContext.Sizes);
+            return Ok(_dbContext.Sizes.OrderBy(s => s.Id));
         }
         catch (Exception ex)
         {
@@ -64,7 +64,21 @@ public class PizzaOptionsController : ControllerBase
     {
         try
         {
-            return Ok(_dbContext.Toppings);
+            return Ok(_dbContext.Toppings.OrderBy(t => t.Id));
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"{ex}");
+        }
+    }
+
+    [HttpGet("pizzatopping")]
+    [Authorize]
+    public IActionResult GetPizzaToppings()
+    {
+        try
+        {
+            return Ok(_dbContext.PizzaToppings.OrderBy(pt => pt.Id));
         }
         catch (Exception ex)
         {

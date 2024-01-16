@@ -1,0 +1,102 @@
+/* ------------- create.js view --------------------- */
+.create-header {
+    border-bottom: 1px solid black;
+    margin: 20px 0px;
+}
+
+.create-body {
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    box-shadow: 1px 1px 4px gray;
+    background-color: var(--offwhite);
+    width: 600px;
+    margin: 30px auto;
+    padding: 10px;
+    text-align: center;
+}
+
+/* --------------create order form ------------------- */
+.create-order-form {
+    width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.create {
+    width: 95%;
+    align-self: center;
+    border: thin solid lightgray;
+    border-radius: 6px;
+    background-color: var(--offwhite);
+    padding: 10px;
+    margin-top:5px;
+}
+
+.create-dropdown {
+    width: fit-content;
+    min-width: 120px;
+    height: 30px;
+    border-radius: 4px;
+    padding: 2px;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+#address-input {
+    margin-left: 10px;
+}
+
+#add-pizza-btn {
+    width: 120px;
+    height: 30px;
+}
+
+#create-submit-btn {
+    width: 150px;
+    height: 35px;
+    margin: 12px 20px;
+}
+
+#create-submit-disabled {
+    width: 150px;
+    height: 35px;
+    margin: 12px 20px;
+}
+
+#create-cancel-btn {
+    width: 150px;
+    height: 35px;
+    margin: 12px 20px;
+}
+
+/* ------- create pizza form -------- */
+#discard-btn {
+    width: 150px;
+    height: 35px;
+}
+
+#add-to-order-btn {
+    width: 150px;
+    height: 35px;
+}
+
+.create-buttons {
+    text-align: center;
+}
+
+
+/*  ------ create toppings form ------- */
+
+.toppings-checkboxes {
+    width: 100%;
+    height: 100px;
+    flex-wrap:wrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topping-checkbox {
+    width: 120px;
+    text-align: left;
+}
