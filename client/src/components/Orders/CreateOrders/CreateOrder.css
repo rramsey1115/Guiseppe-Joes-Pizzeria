@@ -47,11 +47,43 @@
 }
 
 #add-pizza-btn {
+    width: 120px;
+    height: 30px;
+}
+
+#create-submit-btn {
+    width: 150px;
+    height: 35px;
+    margin: 12px 20px;
+}
+
+#create-submit-disabled {
+    width: 150px;
+    height: 35px;
+    margin: 12px 20px;
+}
+
+#create-cancel-btn {
+    width: 150px;
+    height: 35px;
+    margin: 12px 20px;
+}
+
+/* ------- create pizza form -------- */
+#discard-btn {
     width: 150px;
     height: 35px;
 }
 
-/* ------- create pizza form -------- */
+#add-to-order-btn {
+    width: 150px;
+    height: 35px;
+}
+
+.create-buttons {
+    text-align: center;
+}
+
 
 /*  ------ create toppings form ------- */
 .toppings-checkboxes-cols {

@@ -119,7 +119,7 @@ export const Create = ({ loggedInUser }) => {
 
                     
                     {newOrder.orderPizzas.length === 0 ? null
-                    :<fieldset>
+                    :<fieldset className="create"><h5 style={{textDecoration:'underline'}}>Order Pizzas</h5>
                         {newOrder.orderPizzas.map(pizza => {
                             pizzaCount++;
                             return ( <div key={pizzaCount}>
@@ -145,7 +145,9 @@ export const Create = ({ loggedInUser }) => {
                             onClick={(e) => {e.preventDefault(); setPizzaOpen(true)} }
                             >Add Pizza
                         </button>
-                        : pizzaOpen===true ? <h5 style={{textDecoration:"underline"}}>Create Pizza</h5> : <button disabled className="green-btn">Add Pizza</button>}
+                        : pizzaOpen===true 
+                        ? <h5 style={{textDecoration:"underline"}}>Create Pizza</h5> 
+                        : <button disabled className="green-btn">Add Pizza</button>}
                     </fieldset>
 
                     {/* ---------- create a new pizza -------- */}
@@ -158,36 +160,38 @@ export const Create = ({ loggedInUser }) => {
                     /> 
                     :null }
 
-                {/* generate enabled once all fields have a value */}
-                <fieldset className="create">
-                    {newOrder.orderPizzas.length > 0 
-                        ? <button 
-                            id="create-submit"
-                            className="green-btn"
-                            onClick={(e) => handleSubmit(e)}
-                            >Submit Order
-                        </button> 
-                        : <button 
-                            disabled 
-                            id="create-submit-disabled"
-                            className="green-btn"
-                            >Submit Order
-                        </button> 
-                    }
-                    {/* cancel button always visible to exit form at any time */}
-                    <button
-                        id="create-cancel-btn"
-                        className="red-btn"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            navigate('/');
-                        }}
-                        >Cancel
-                    </button>
-                </fieldset>
-
                 </form>
+            </div>
 
+
+            {/* generate enabled submit button once all fields have a value */}
+            <div className="create-buttons">
+            {newOrder.orderPizzas.length > 0 
+                ? <button 
+                    id="create-submit-btn"
+                    className="green-btn"
+                    onClick={(e) => handleSubmit(e)}
+                    >Submit Order
+                </button> 
+                : <button 
+                    disabled 
+                    id="create-submit-disabled"
+                    className="green-btn"
+                    >Submit Order
+                </button> 
+            }
+            {/* cancel button always visible to exit form at any time */}
+            <button
+                id="create-cancel-btn"
+                className="red-btn"
+                onClick={(e) => {
+                    e.preventDefault();
+                    navigate('/');
+                }}
+                >Cancel
+            </button>
         </div>
+
+
     </div>
 }
