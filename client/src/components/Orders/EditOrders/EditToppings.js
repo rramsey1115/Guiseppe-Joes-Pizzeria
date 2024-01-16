@@ -35,14 +35,13 @@ export const EditToppings = ({index, updatedObj, setUpdatedObj}) => {
     }
 
 
-
-    return(
+    return(<>
+        <h5 style={{marginTop:12}}>Toppings</h5>
         <div className="toppings-checkboxes">
-            <p>Toppings</p>
             {toppings.map(t => {
                 const arr = updatedObj.orderPizzas[index].pizzaToppings.filter(top => top.toppingId === t.id);
                 return ( 
-                <div key={t.id}>
+                <div key={t.id} className="topping-checkbox">
                     <input
                         type="checkbox"
                         defaultChecked={ arr.length > 0 ? true : false }
@@ -52,5 +51,5 @@ export const EditToppings = ({index, updatedObj, setUpdatedObj}) => {
                 </div> )
             })}
         </div>
-    )
+    </>)
 }

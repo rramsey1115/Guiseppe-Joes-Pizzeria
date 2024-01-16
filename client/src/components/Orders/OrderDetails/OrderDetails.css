@@ -12,6 +12,7 @@
     border: 1px solid darkgray;
     border-radius: 8px;
     width: 45%;
+    height: fit-content;
     min-width: 330px;
     padding: 8px 4px 4px 4px;
     margin-bottom: 40px;

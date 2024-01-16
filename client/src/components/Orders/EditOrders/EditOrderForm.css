@@ -1,9 +1,44 @@
+/* ------edit order form ------- */
 .edit-details-form {
     padding: 10px;
+}
+
+.form-control {
+    padding: 10px;
+    margin-top:5px;
 }
 
 .radios {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+.address-input {
+    border: thin solid black;
+    border-radius: 4px;
+    margin-left: 8px;
+    padding: 2px;
+    width: 300px;
+    height: 28px;
+}
+
+.edit-order-btn-div {
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#edit-order-save-btn {
+    width: 150px;
+    height: 32px;
+}
+
+/*  ---- edit pizza form ------------ */
+.edit-dropdown {
+    border: thin solid black;
+    border-radius: 4px;
+    width: 200px;
+    height: 28px;
 }

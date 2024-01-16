@@ -25,6 +25,7 @@ export const EditPizza = ({ index, setUpdatedObj, updatedObj }) => {
                     }}
                     value={updatedObj.orderPizzas[index].sizeId}
                     name="size"
+                    className="edit-dropdown"
                     >
                 {sizes.map(s => { return( 
                     <option 
@@ -47,6 +48,7 @@ export const EditPizza = ({ index, setUpdatedObj, updatedObj }) => {
                     }}
                     value={updatedObj.orderPizzas[index].cheeseId}
                     name="cheese"
+                    className="edit-dropdown"
                     >
                 {cheeses.map(c => { return( 
                     <option 
@@ -69,6 +71,7 @@ export const EditPizza = ({ index, setUpdatedObj, updatedObj }) => {
                     }}
                     value={updatedObj.orderPizzas[index].sauceId}
                     name="sauce"
+                    className="edit-dropdown"
                     >
                 {sauces.map(s => { return( 
                     <option 

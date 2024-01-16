@@ -72,6 +72,7 @@ export const EditOrderForm = ({ order, setUpdatedObj, updatedObj }) => {
         <fieldset className="form-control">
                 <label>Address
                     <input 
+                        className="address-input"
                         type="text" 
                         name="address"
                         value={updatedObj.address ?? ""}
@@ -88,13 +89,13 @@ export const EditOrderForm = ({ order, setUpdatedObj, updatedObj }) => {
             <div className="radios">
                 <div>
                     <input 
-                    name="type" 
-                    type="radio" 
-                    onClick={() => {
-                        const copy = {...updatedObj}
-                        copy.delivery = true;
-                        setUpdatedObj(copy);
-                    }}
+                        name="type" 
+                        type="radio" 
+                        onClick={() => {
+                            const copy = {...updatedObj}
+                            copy.delivery = true;
+                            setUpdatedObj(copy);
+                        }}
                     />Delivery
                 </div>
                 <div>
@@ -116,6 +117,7 @@ export const EditOrderForm = ({ order, setUpdatedObj, updatedObj }) => {
         <fieldset className="form-control">
             <h5>Table</h5>
             <select 
+                className="edit-dropdown"
                 name="table"
                 onChange={(e) => {
                     const copy = {...updatedObj}
@@ -151,7 +153,14 @@ export const EditOrderForm = ({ order, setUpdatedObj, updatedObj }) => {
         })}
  
     </form>
-    <button className="green-btn" onClick={(e) => handleSubmit()}>Save</button>
+    <div className="edit-order-btn-div">
+        <button 
+            id="edit-order-save-btn"
+            className="green-btn" 
+            onClick={(e) => handleSubmit()}
+            >Save
+        </button>
+    </div>
     </>
     )
 }
