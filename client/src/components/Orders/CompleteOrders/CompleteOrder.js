@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOrderById } from "../../../managers/orderManager";
 import RingLoader from "react-spinners/RingLoader";
-import { DetailsTable } from "../OrderDetails/DetailsTable";
 import { CompleteOrderForm } from "./CompleteOrderForm";
 import { CompleteDetailsTable } from "../OrderDetails/CompleteDetailsTable";
 
