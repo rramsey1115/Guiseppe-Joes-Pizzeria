@@ -21,9 +21,10 @@ export const CreatePizza = ({ newOrder, setNewOrder, pizzaCount, setPizzaOpen })
 
 return (
 <>
-    <fieldset id="size" className="form-control create">
-        <h5>Size</h5>
+    <fieldset id="size" className="create">
+        <h5>Pizza Size
         <select 
+            className="create-dropdown"
             value={pizza.sizeId}
             name="size"
             onChange={(e) => {
@@ -32,7 +33,7 @@ return (
                 setPizza(copy);
             }}
         >
-            <option name="size" value={0}>Pizza Size</option>
+            <option name="size" value={0}>Sizes</option>
             {sizes?.map(s => { return ( 
                 <option 
                     key={s.id} 
@@ -41,12 +42,13 @@ return (
                 >{s.name} 
             </option> )
             })}
-        </select>
+        </select></h5>
     </fieldset>
 
-    <fieldset id="sauce" className="form-control create">
-        <h5>Sauce</h5>
+    <fieldset id="sauce" className="create">
+        <h5>Pizza Sauce
         <select 
+            className="create-dropdown"
             value={pizza.sauceId}
             name="sauce"
             onChange={(e) => {
@@ -54,7 +56,7 @@ return (
                 copy.sauceId = e.target.value*1;
                 setPizza(copy);
             }}>
-                <option name="sauce" value={0}>Pizza Sauce</option>
+                <option name="sauce" value={0}>Sauces</option>
             {sauces.map(s => { return( 
                 <option 
                     key={s.id}
@@ -63,12 +65,13 @@ return (
                     >{s.name} 
             </option> )
             })}
-        </select>
+        </select></h5>
     </fieldset>
 
-    <fieldset id="cheese" className="form-control create">
-        <h5>Cheese</h5>
+    <fieldset id="cheese" className="create">
+        <h5>Pizza Cheese
         <select 
+            className="create-dropdown"
             onChange={(e) => {
                 const copy = {...pizza}
                 copy.cheeseId = e.target.value*1;
@@ -77,7 +80,7 @@ return (
             value={pizza.cheeseId}
             name="cheese"
             >
-                <option name="size" value={0}>Pizza Cheese</option>
+                <option name="size" value={0}>Cheeses</option>
         {cheeses.map(c => { return( 
             <option 
                 key={c.id} 
@@ -86,18 +89,14 @@ return (
             >{c.name} 
         </option>  )
         })}
-        </select>
+        </select></h5>
     </fieldset>
 
-    <fieldset id="toppings" className="form-control create">
+    <fieldset id="toppings" className="create">
             <CreateToppings pizza={pizza} setPizza={setPizza} pizzaCount={pizzaCount} />
     </fieldset>
 
-    <fieldset id="total" className="form-control create">
-        
-    </fieldset>
-
-    <fieldset>
+    <fieldset className="create">
         {pizza.cheeseId && 
         pizza.sizeId && 
         pizza.sizeId 
@@ -125,7 +124,7 @@ return (
                 });
                 setPizzaOpen(false);
             }}
-            >Discard PIzza
+            >Discard Pizza
         </button>}
     </fieldset>
 

@@ -19,12 +19,10 @@ export const Create = ({ loggedInUser }) => {
 
     const navigate = useNavigate();
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
         postNewOrder(newOrder).then(() => navigate('/orders'))
     }
-
 
     return !newOrder.employeeId
     ? <div className="spinner-div">
@@ -38,14 +36,16 @@ export const Create = ({ loggedInUser }) => {
     
     :<div className="container">
 
-        <div className="create-header"> 
-            <h4>Create New Order</h4>
-        </div>
+      
 
         <div className="create-body">
 
+                <div className="create-header"> 
+                    <h4>Create New Order</h4>
+                </div>
+
                 <form className="create-order-form">
-                    <fieldset id="delivery" className="form-control create">
+                    <fieldset id="delivery" className="create">
                         <div className="radios">
                             <h5>Type</h5>
                             <div>
@@ -77,9 +77,10 @@ export const Create = ({ loggedInUser }) => {
                     {/* shows more options after choosing deliver or dine-in/take-out */}
                     {newOrder.delivery == null ? null : 
                     newOrder.delivery === false
-                    ?<fieldset id="table" className="form-control create">
-                        <h5>Table</h5>
+                    ?<fieldset className="create">
+                        <h5>Table #
                         <select 
+                            className="create-dropdown"
                             name="table"
                             onChange={(e) => {
                                 const copy = {...newOrder}
@@ -87,7 +88,7 @@ export const Create = ({ loggedInUser }) => {
                                 setNewOrder(copy);
                             }}
                         >
-                            <option value={0}>Table #</option>
+                            <option value={0}>Select</option>
                             <option value={1}>1</option>
                             <option value={2}>2</option>
                             <option value={3}>3</option>
@@ -98,22 +99,22 @@ export const Create = ({ loggedInUser }) => {
                             <option value={8}>8</option>
                             <option value={9}>9</option>
                             <option value={10}>Take-Out</option>
-                        </select>
+                        </select></h5>
                     </fieldset>
-                    :<fieldset id="address" className="form-control create">
-                        <h5>Delivery Address</h5>
+                    :<fieldset id="address" className="create">
+                        <h5>Delivery Address
                         <input 
                             id="address-input" 
                             className="text-input" 
                             type="text" 
-                            placeholder="Delivery Address"
+                            placeholder="Ex: 123 Main St."
                             value={newOrder.address}
                             onChange={(e) => {
                                 const copy = {...newOrder};
                                 copy.address = e.target.value;
                                 setNewOrder(copy);
                             }}
-                        />          
+                        /> </h5>         
                     </fieldset> }
 
                     
@@ -136,7 +137,7 @@ export const Create = ({ loggedInUser }) => {
 
 
                     {/* add pizza button opens CreatePizza form */}
-                    <fieldset>
+                    <fieldset className="create">
                         {(newOrder.tableNumber > 0 || newOrder.address?.length > 3) && (pizzaOpen===false)
                         ?<button 
                             id="add-pizza-btn" 
@@ -144,13 +145,7 @@ export const Create = ({ loggedInUser }) => {
                             onClick={(e) => {e.preventDefault(); setPizzaOpen(true)} }
                             >Add Pizza
                         </button>
-                        :<button 
-                            hidden 
-                            disabled
-                            id="hidden-add-pizza-btn" 
-                            className="green-btn" 
-                            >Add Pizza
-                        </button>}
+                        : pizzaOpen===true ? <h5 style={{textDecoration:"underline"}}>Create Pizza</h5> : <button disabled className="green-btn">Add Pizza</button>}
                     </fieldset>
 
                     {/* ---------- create a new pizza -------- */}
@@ -164,7 +159,7 @@ export const Create = ({ loggedInUser }) => {
                     :null }
 
                 {/* generate enabled once all fields have a value */}
-                <fieldset>
+                <fieldset className="create">
                     {newOrder.orderPizzas.length > 0 
                         ? <button 
                             id="create-submit"

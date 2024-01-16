@@ -26,12 +26,12 @@ export const CreateToppings = ({pizza, setPizza, pizzaCount}) => {
         setPizza(copy);
     }
 
-    return(
+    return(<>
+        <h5 style={{textDecoration:'underline'}}>Toppings</h5>
         <div className="toppings-checkboxes">
-            <p>Toppings</p>
             {toppings.map(t => {
                 return ( 
-                <div key={t.id}>
+                <div className="topping-checkbox" key={t.id}>
                     <input
                         type="checkbox"
                         value={t.id}
@@ -43,5 +43,5 @@ export const CreateToppings = ({pizza, setPizza, pizzaCount}) => {
                 </div> )
             })}
         </div>
-    )
+    </>)
 }
