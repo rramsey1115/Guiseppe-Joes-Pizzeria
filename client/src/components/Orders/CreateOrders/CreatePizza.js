@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCheeses, getSauces, getSizes, getToppings } from "../../../managers/optionsManager";
+import { getCheeses, getSauces, getSizes } from "../../../managers/optionsManager";
 import { CreateToppings } from "./CreateToppings";
 
 export const CreatePizza = ({ newOrder, setNewOrder, pizzaCount, setPizzaOpen }) => {
@@ -128,6 +128,9 @@ return (
             >Discard PIzza
         </button>}
     </fieldset>
+
+    {/* generate submit button once all fields have a value */}
+    {newOrder.orderPizzas.length > 0 ? <button className="green-btn">Submit Order</button> : <button disabled className="green-btn">Submit Order</button> }
 
 </>)
 }

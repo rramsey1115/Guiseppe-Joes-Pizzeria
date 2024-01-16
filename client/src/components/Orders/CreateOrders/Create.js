@@ -105,6 +105,24 @@ export const Create = ({ loggedInUser }) => {
                         />          
                     </fieldset> }
 
+                    
+                    {newOrder.orderPizzas.length === 0 ? null
+                    :<fieldset>
+                        {newOrder.orderPizzas.map(pizza => {
+                            pizzaCount++;
+                            return ( <div key={pizzaCount}>
+                                <h5>
+                                    {
+                                        `Pizza ${pizzaCount}: 
+                                        ${pizza.sizeId === 1 ? 'Small' : pizza.sizeId === 2 ? 'Medium' : 'Large'}
+                                        ${pizza.pizzaToppings.length} Topping`
+                                    }
+                                </h5>
+                            </div>)
+                        })}
+                    </fieldset>
+                    }
+
 
                     {/* add pizza button opens CreatePizza form */}
                     <fieldset>

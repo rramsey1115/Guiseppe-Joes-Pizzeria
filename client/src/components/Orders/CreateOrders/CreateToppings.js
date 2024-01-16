@@ -6,8 +6,7 @@ export const CreateToppings = ({pizza, setPizza, pizzaCount}) => {
 
     useEffect(() => {
         getAndSetToppings();
-        // getAndSetPizzaToppings();
-    }, [pizzaCount]);
+    }, []);
 
     const getAndSetToppings = () => {
         getToppings().then(setToppings);
@@ -23,7 +22,7 @@ export const CreateToppings = ({pizza, setPizza, pizzaCount}) => {
     const addTopping = (id) => {
         const copy = {...pizza}
         const newTopping = toppings.filter(top => top.id === id);
-        copy.pizzaToppings.push(newTopping);
+        copy.pizzaToppings.push( {toppingId:newTopping[0].id} );
         setPizza(copy);
     }
 
