@@ -30,3 +30,9 @@ export const completeOrder = (orderId, obj) => {
     }).then(res => res.json());
 }
 
+export const removeOrder = (orderId) => {
+    return fetch(`api/order/${orderId}`, {
+        method: "DELETE"
+    });
+}
+

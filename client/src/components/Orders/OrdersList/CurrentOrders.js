@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Table } from "reactstrap"
-import { getAllOrders } from "../../../managers/orderManager";
+import { getAllOrders, removeOrder } from "../../../managers/orderManager";
 import { useNavigate } from "react-router-dom";
 import RingLoader from "react-spinners/RingLoader";
 
@@ -86,6 +86,8 @@ export const CurrentOrders = () => {
                         <td>
                             <button 
                                 className="red-btn"
+                                value={o.id}
+                                onClick={(e) => {removeOrder(e.target.value*1).then(() => getAndSetCurrentOrders())}}
                                 >Cancel
                             </button>
                         </td>
