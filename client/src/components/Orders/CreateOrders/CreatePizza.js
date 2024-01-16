@@ -129,8 +129,5 @@ return (
         </button>}
     </fieldset>
 
-    {/* generate submit button once all fields have a value */}
-    {newOrder.orderPizzas.length > 0 ? <button className="green-btn">Submit Order</button> : <button disabled className="green-btn">Submit Order</button> }
-
 </>)
 }

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { RingLoader } from "react-spinners";
 import "./CreateOrder.css";
 import { CreatePizza } from "./CreatePizza";
+import { useNavigate } from "react-router-dom";
+import { postNewOrder } from "../../../managers/orderManager";
 
 export const Create = ({ loggedInUser }) => {
     const [pizzaOpen, setPizzaOpen] = useState(false);
@@ -14,6 +16,15 @@ export const Create = ({ loggedInUser }) => {
     });
 
     let pizzaCount = 0;
+
+    const navigate = useNavigate();
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        postNewOrder(newOrder).then(() => navigate('/orders'))
+    }
+
 
     return !newOrder.employeeId
     ? <div className="spinner-div">
@@ -151,6 +162,34 @@ export const Create = ({ loggedInUser }) => {
                         setPizzaOpen={setPizzaOpen}
                     /> 
                     :null }
+
+                {/* generate enabled once all fields have a value */}
+                <fieldset>
+                    {newOrder.orderPizzas.length > 0 
+                        ? <button 
+                            id="create-submit"
+                            className="green-btn"
+                            onClick={(e) => handleSubmit(e)}
+                            >Submit Order
+                        </button> 
+                        : <button 
+                            disabled 
+                            id="create-submit-disabled"
+                            className="green-btn"
+                            >Submit Order
+                        </button> 
+                    }
+                    {/* cancel button always visible to exit form at any time */}
+                    <button
+                        id="create-cancel-btn"
+                        className="red-btn"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            navigate('/');
+                        }}
+                        >Cancel
+                    </button>
+                </fieldset>
 
                 </form>
 
