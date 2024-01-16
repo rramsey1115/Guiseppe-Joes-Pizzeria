@@ -14,7 +14,7 @@ export const CurrentOrders = () => {
             const filtered = res.filter(r => r.completedOnDate == null);
             setOrders(filtered);
         });
-    }
+    };
 
     const getFormattedDate = (dateString) => {
         const date = new Date(dateString); // {object Date}
@@ -34,7 +34,7 @@ export const CurrentOrders = () => {
         if(mm < 10) {mm = `0${mm}`};
         if(hh >= 12) {return (`${hh - 12}:${mm} PM`)};
         if (hh < 12) {return (`${hh}:${mm} AM`)};
-    }
+    };
 
     const navigate = useNavigate();
     
