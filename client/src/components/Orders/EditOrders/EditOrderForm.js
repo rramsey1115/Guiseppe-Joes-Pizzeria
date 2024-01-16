@@ -6,7 +6,7 @@ import { EditToppings } from "./EditToppings";
 import { editOrderById } from "../../../managers/orderManager";
 import { useNavigate } from "react-router-dom";
 
-export const EditOrderForm = ({ setFormOpen, setOrder, order, setUpdatedObj, updatedObj }) => {
+export const EditOrderForm = ({ order, setUpdatedObj, updatedObj }) => {
 
     let pizzaCount = 0;
 

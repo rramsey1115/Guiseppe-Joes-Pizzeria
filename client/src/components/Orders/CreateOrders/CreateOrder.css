@@ -1,27 +1,29 @@
-.choose-order-body {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+/* ------------- create.js view --------------------- */
+.create-header {
+    border-bottom: 1px solid black;
+    margin: 20px 0px;
 }
 
-.choose-side {
-    margin: 80px auto;
+.create-body {
+    border: 1px solid lightgray;
+    border-radius: 12px;
+    box-shadow: 1px 1px 4px gray;
+    background-color: var(--offwhite);
 }
 
-.choose-type-img {
-    margin: 30px auto 30px auto;
-    width: 250px;
-    height: 250px;
+
+
+
+/* --------------create order form ------------------- */
+.create-order-form {
+    width: 600px;
+    margin: 20px auto;
 }
 
-#choose-heading {
-    font-size: 44px;
-    font-weight: bold;
-    text-shadow: 1px 1px 3px var(--green);
-    font-family: 'Acme', sans-serif;
-    margin: none;
-    color: var(--red);
+.create {
+    width: 95%;
+    border: thin solid lightgray;
+    border-radius: 6px;
+    margin-top: 6px;
+    background-color: var(--offwhite);
 }

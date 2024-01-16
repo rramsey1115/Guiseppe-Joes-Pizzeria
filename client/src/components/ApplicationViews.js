@@ -4,11 +4,9 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import { Home } from "./Home/Home";
 import { OrdersList } from "./Orders/OrdersList/OrdersList";
-import { CreateDeliveryOrder } from "./Orders/CreateOrders/CreateDeliveryOrder";
-import { CreateDineInOrder } from "./Orders/CreateOrders/CreateDineInOrder";
-import { ChooseOrderType } from "./Orders/CreateOrders/ChooseOrderType";
 import { OrderDetails } from "./Orders/OrderDetails/OrderDetails";
 import { CompleteOrder } from "./Orders/CompleteOrders/CompleteOrder";
+import { Create } from "./Orders/CreateOrders/Create";
 
 export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
   return (
@@ -49,17 +47,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         <Route path="create">
             <Route index element={
               <AuthorizedRoute loggedInUser={loggedInUser}>
-                <ChooseOrderType loggedInUser={loggedInUser}/>
-              </AuthorizedRoute>} 
-            />
-            <Route path="delivery" element={
-              <AuthorizedRoute loggedInUser={loggedInUser}>
-                <CreateDeliveryOrder loggedInUser={loggedInUser}/>
-              </AuthorizedRoute>} 
-            />
-            <Route path="dinein" element={
-              <AuthorizedRoute loggedInUser={loggedInUser}>
-                <CreateDineInOrder loggedInUser={loggedInUser}/>
+                <Create loggedInUser={loggedInUser}/>
               </AuthorizedRoute>} 
             />
         </Route>
