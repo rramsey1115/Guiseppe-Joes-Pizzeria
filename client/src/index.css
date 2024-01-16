@@ -65,6 +65,9 @@ body {
 }
 
 .spinner-div {
-  margin: 100px 45vw;
+  width: fit-content;
+  text-align: center;
+  align-items: center;
+  margin: 10rem auto;
   text-align: center;
 }
