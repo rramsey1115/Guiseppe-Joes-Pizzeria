@@ -1,7 +1,6 @@
 /*------------------ORDER DETAILS--------------*/
 .details-body {
     margin:20px 0px;
-    border: 1px dashed blue;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -19,7 +18,6 @@
 }
 
 .body-right {
-    border: 1px solid green;
     width: 50%;
     min-width: 330px;
     padding: 4px 8px;

@@ -25,7 +25,7 @@ export const CompleteOrder = () => {
         </div>
         : (
         <div className="container">
-            {console.log('order', order)}
+
             <section className="details-body">
     
                 {/* table for order details to update with form on right side */}

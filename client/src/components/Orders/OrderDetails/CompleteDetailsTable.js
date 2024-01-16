@@ -62,15 +62,16 @@ export const CompleteDetailsTable = ({ order }) => {
                 <tr>
                     <th>Type</th>
                     {/* shows Deliver, Dine-In, or Take-Out based on delivery and table number */}
-                    {order.delivery 
+                    {order.delivery===true
                     ? <td>Delivery</td> 
                     : order.tableNumber*1 === 10 ? <td>Take-Out</td> : <td>Dine-In</td>}
                 </tr>
                 {/* shows delivery address and driver OR table number */}
-                {order.delivery 
+                {order.delivery===true 
                 ? <><tr>
                         <th>Address</th>
                         <td>{order.address}</td>
+                        {console.log('order', order)}
                     </tr> 
                     <tr>
                         <th>Driver</th>
