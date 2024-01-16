@@ -10,7 +10,7 @@ export const CreatePizza = ({ newOrder, setNewOrder, pizzaCount, setPizzaOpen })
         sizeId: 0,
         cheeseId: 0,
         sauceId: 0,
-        toppings: []
+        pizzaToppings: []
     });
 
     useEffect(() => {
@@ -27,9 +27,9 @@ return (
             value={pizza.sizeId}
             name="size"
             onChange={(e) => {
-                const copy = {...newOrder}
-                copy.pizza.sizeId = e.target.value*1;
-                setNewOrder(copy);
+                const copy = {...pizza}
+                copy.sizeId = e.target.value*1;
+                setPizza(copy);
             }}
         >
             <option name="size" value={0}>Pizza Size</option>
@@ -51,9 +51,10 @@ return (
             name="sauce"
             onChange={(e) => {
                 const copy = {...pizza}
-                copy.pizza.sauceId = e.target.value*1;
+                copy.sauceId = e.target.value*1;
                 setPizza(copy);
             }}>
+                <option name="sauce" value={0}>Pizza Sauce</option>
             {sauces.map(s => { return( 
                 <option 
                     key={s.id}
@@ -70,12 +71,13 @@ return (
         <select 
             onChange={(e) => {
                 const copy = {...pizza}
-                copy.pizza.cheeseId = e.target.value*1;
+                copy.cheeseId = e.target.value*1;
                 setPizza(copy);
             }}
             value={pizza.cheeseId}
             name="cheese"
             >
+                <option name="size" value={0}>Pizza Cheese</option>
         {cheeses.map(c => { return( 
             <option 
                 key={c.id} 
@@ -123,7 +125,7 @@ return (
                 });
                 setPizzaOpen(false);
             }}
-            >Discard
+            >Discard PIzza
         </button>}
     </fieldset>
 

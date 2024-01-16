@@ -26,10 +26,7 @@ export const Home = ({loggedInUser}) => {
                     <button className="green-btn" id="home-btn" onClick={(e) => navigate('orders')}>View Orders</button>
                 </div>
                 <div className="btn-div">
-                    <button className="green-btn" id="home-btn" onClick={(e) => navigate('create/dinein')}>New Dine-In Order</button>
-                </div>
-                <div className="btn-div">
-                    <button className="green-btn" id="home-btn" onClick={(e) => navigate('create/delivery')}>New Delivery Order</button>
+                    <button className="green-btn" id="home-btn" onClick={(e) => navigate('create')}>New Order</button>
                 </div>
             </section>
         </div>

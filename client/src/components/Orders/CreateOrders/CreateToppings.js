@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getPizzaToppings, getToppings } from "../../../managers/optionsManager";
+import { getToppings } from "../../../managers/optionsManager";
 
 export const CreateToppings = ({pizza, setPizza, pizzaCount}) => {
     const [toppings, setToppings] = useState([]);
@@ -13,10 +13,6 @@ export const CreateToppings = ({pizza, setPizza, pizzaCount}) => {
         getToppings().then(setToppings);
     };
 
-    // const getAndSetPizzaToppings = () => {
-    //     getPizzaToppings().then(setPizzaToppings);
-    // };
-
     const removeTopping = (id) => {
         const copy = {...pizza}
         var resArr = copy.pizzaToppings.filter(top => top.toppingId !== id);
@@ -24,9 +20,9 @@ export const CreateToppings = ({pizza, setPizza, pizzaCount}) => {
         setPizza(copy);
     }
 
-    const addTopping = (tId) => {
+    const addTopping = (id) => {
         const copy = {...pizza}
-        const newTopping = toppings.filter(top => top.id === tId);
+        const newTopping = toppings.filter(top => top.id === id);
         copy.pizzaToppings.push(newTopping);
         setPizza(copy);
     }

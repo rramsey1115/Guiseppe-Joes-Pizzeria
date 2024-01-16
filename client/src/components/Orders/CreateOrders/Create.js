@@ -1,18 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RingLoader } from "react-spinners";
 import "./CreateOrder.css";
-import { getCheeses, getSauces, getSizes, getToppings } from "../../../managers/optionsManager";
 import { CreatePizza } from "./CreatePizza";
 
 export const Create = ({ loggedInUser }) => {
     const [pizzaOpen, setPizzaOpen] = useState(false);
     const [newOrder, setNewOrder] = useState({
         employeeId: loggedInUser.id,
-        sizeId: 0,
-        sauceId: 0,
-        cheeseId: 0,
         tableNumber: 0,
-        delivery: false,
+        delivery: null,
         address: null,
         orderPizzas: []
     });
@@ -66,7 +62,10 @@ export const Create = ({ loggedInUser }) => {
                         </div>
                     </fieldset>
 
-                    {newOrder.delivery === false
+                    
+                    {/* shows more options after choosing deliver or dine-in/take-out */}
+                    {newOrder.delivery == null ? null : 
+                    newOrder.delivery === false
                     ?<fieldset id="table" className="form-control create">
                         <h5>Table</h5>
                         <select 
@@ -90,8 +89,8 @@ export const Create = ({ loggedInUser }) => {
                             <option value={10}>Take-Out</option>
                         </select>
                     </fieldset>
-
                     :<fieldset id="address" className="form-control create">
+                        <h5>Delivery Address</h5>
                         <input 
                             id="address-input" 
                             className="text-input" 
@@ -106,10 +105,23 @@ export const Create = ({ loggedInUser }) => {
                         />          
                     </fieldset> }
 
+
+                    {/* add pizza button opens CreatePizza form */}
                     <fieldset>
-                        {pizzaOpen===false 
-                        ?<button className="green-btn" onClick={(e) => {e.preventDefault(); setPizzaOpen(true)} }>Add Pizza</button>
-                        :<button disabled className="green-btn" onClick={(e) => {e.preventDefault(); setPizzaOpen(true)} }>Add Pizza</button>}
+                        {(newOrder.tableNumber > 0 || newOrder.address?.length > 3) && (pizzaOpen===false)
+                        ?<button 
+                            id="add-pizza-btn" 
+                            className="green-btn" 
+                            onClick={(e) => {e.preventDefault(); setPizzaOpen(true)} }
+                            >Add Pizza
+                        </button>
+                        :<button 
+                            hidden 
+                            disabled
+                            id="hidden-add-pizza-btn" 
+                            className="green-btn" 
+                            >Add Pizza
+                        </button>}
                     </fieldset>
 
                     {/* ---------- create a new pizza -------- */}
