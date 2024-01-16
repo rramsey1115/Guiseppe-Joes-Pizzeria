@@ -7,7 +7,7 @@ export const getOrderById = (id) => {
 }
 
 export const postNewOrder = (obj) => {
-    return fetch(`/api/order`, {
+    return fetch(`/api/order/create`, {
         method: "POST",
         headers: { "Content-Type":"application/json" },
         body: JSON.stringify(obj)

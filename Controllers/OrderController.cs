@@ -230,6 +230,7 @@ public class OrderController : ControllerBase
     [Authorize]
     public IActionResult Create(Order order)
     {
+        order.PlacedOnDate = DateTime.Now;
         _dbContext.Orders.Add(order);
         _dbContext.SaveChanges();
         return Created($"api/order/{order.Id}", order);
