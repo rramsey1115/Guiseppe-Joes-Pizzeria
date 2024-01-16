@@ -6,6 +6,12 @@ export const CreatePizza = ({ newOrder, setNewOrder, pizzaCount }) => {
     const [sauces, setSauces] = useState([]);
     const [sizes, setSizes] = useState([]);
     const [toppings, setToppings] = useState([]);
+    const [pizza, setPizza] = useState({
+        sizeId: 0,
+        cheeseId: 0,
+        sauceId: 0,
+        toppings: []
+    });
 
     useEffect(() => {
         getCheeses().then(setCheeses);
@@ -19,24 +25,23 @@ return (
     <fieldset id="size" className="form-control create">
         <h5>Size</h5>
         <select 
-            onChange={(e) => {
-                const copy = {...newOrder}
-                copy.orderPizzas[pizzaCount].sizeId = e.target.value*1;
-                copy.orderPizzas[pizzaCount].size = sizes.find(s => s.id === e.target.value*1)
-                setNewOrder(copy);
-            }}
             value={newOrder.orderPizzas[pizzaCount]?.sizeId}
             name="size"
+            onChange={(e) => {
+                const copy = {...newOrder}
+                copy.pizza.sizeId = e.target.value*1;
+                setNewOrder(copy);
+            }}
         >
-            <option value={0}>Pizza Size</option>
-        {sizes?.map(s => { return( 
-            <option 
-                key={s.id} 
-                value={s.id}
-                name="size"
-            >{s.name} 
-        </option>  )
-        })}
+            <option name="size" value={0}>Pizza Size</option>
+            {sizes?.map(s => { return ( 
+                <option 
+                    key={s.id} 
+                    value={s.id}
+                    name="size"
+                >{s.name} 
+            </option> )
+            })}
         </select>
     </fieldset>
 

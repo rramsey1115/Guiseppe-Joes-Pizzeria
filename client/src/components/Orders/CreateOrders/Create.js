@@ -5,6 +5,7 @@ import { getCheeses, getSauces, getSizes, getToppings } from "../../../managers/
 import { CreatePizza } from "./CreatePizza";
 
 export const Create = ({ loggedInUser }) => {
+    const [pizzaOpen, setPizzaOpen] = useState(false);
     const [newOrder, setNewOrder] = useState({
         employeeId: loggedInUser.id,
         sizeId: 0,
@@ -89,6 +90,7 @@ export const Create = ({ loggedInUser }) => {
                             <option value={10}>Take-Out</option>
                         </select>
                     </fieldset>
+
                     :<fieldset id="address" className="form-control create">
                         <input 
                             id="address-input" 
@@ -102,13 +104,19 @@ export const Create = ({ loggedInUser }) => {
                                 setNewOrder(copy);
                             }}
                         />          
-                    </fieldset>}
+                    </fieldset> }
+
                     <fieldset>
-                        <button className="green-btn">Add Pizza</button>
+                        {pizzaOpen===false 
+                        ?<button className="green-btn" onClick={(e) => {e.preventDefault(); setPizzaOpen(true)} }>Add Pizza</button>
+                        :<button disabled className="green-btn" onClick={(e) => {e.preventDefault(); setPizzaOpen(true)} }>Add Pizza</button>}
                     </fieldset>
 
                     {/* ---------- create a new pizza -------- */}
-                    <CreatePizza newOrder={newOrder} setNewOrder={setNewOrder} pizzaCount={pizzaCount}/>
+                    {pizzaOpen===true 
+                    ? <CreatePizza newOrder={newOrder} setNewOrder={setNewOrder} pizzaCount={pizzaCount}/> 
+                    : null }
+
                 </form>
 
         </div>
