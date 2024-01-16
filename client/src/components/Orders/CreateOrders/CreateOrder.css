@@ -1,0 +1,27 @@
+.choose-order-body {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.choose-side {
+    margin: 80px auto;
+}
+
+.choose-type-img {
+    margin: 30px auto 30px auto;
+    width: 250px;
+    height: 250px;
+}
+
+#choose-heading {
+    font-size: 44px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px var(--green);
+    font-family: 'Acme', sans-serif;
+    margin: none;
+    color: var(--red);
+}
