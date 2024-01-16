@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCheeses, getSauces, getSizes, getToppings } from "../../../managers/optionsManager";
 
-export const CreatePizza = ({ newOrder, setNewOrder, pizzaCount }) => {
+export const CreatePizza = ({ newOrder, setNewOrder, pizzaCount, setPizzaOpen }) => {
     const [cheeses, setCheeses] = useState([]);
     const [sauces, setSauces] = useState([]);
     const [sizes, setSizes] = useState([]);
@@ -59,6 +59,29 @@ return (
 
     <fieldset id="total" className="form-control create">
         
+    </fieldset>
+
+    <fieldset>
+        {pizza.cheeseId && 
+        pizza.sizeId && 
+        pizza.sizeId 
+        ? <button 
+            id="add-to-order-btn"
+            className="green-btn" 
+            onClick={(e) => {
+                e.preventDefault(); 
+                const copy = {...newOrder};
+                copy.orderPizzas.push(pizza);
+                setNewOrder(copy);
+                setPizzaOpen(false);
+            }}>Add To Order
+        </button>
+        :<button 
+            id="add-to-order-btn"
+            className="green-btn" 
+            disabled
+            >Add To Order
+        </button>}
     </fieldset>
 
 </>)

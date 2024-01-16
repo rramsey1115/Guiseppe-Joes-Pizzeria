@@ -114,8 +114,13 @@ export const Create = ({ loggedInUser }) => {
 
                     {/* ---------- create a new pizza -------- */}
                     {pizzaOpen===true 
-                    ? <CreatePizza newOrder={newOrder} setNewOrder={setNewOrder} pizzaCount={pizzaCount}/> 
-                    : null }
+                    ?<CreatePizza 
+                        newOrder={newOrder} 
+                        setNewOrder={setNewOrder} 
+                        pizzaCount={pizzaCount} 
+                        setPizzaOpen={setPizzaOpen}
+                    /> 
+                    :null }
 
                 </form>
 
