@@ -1,4 +1,4 @@
-.form-control {
+.complete-form-control {
     width: 400px;
     height: 60px;
     margin-bottom:4px;
@@ -8,6 +8,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    border: 1px solid lightgray;
 }
 
 .tip-input {

@@ -34,7 +34,7 @@ export const EditOrderForm = ({ order, setUpdatedObj, updatedObj }) => {
             />
     </div>
     : (
-    <><form autoComplete="true" className="edit-details-form">
+    <><form autoComplete="true" className="edit-order-form">
 
         {/* ---------------------------------- change order type radio buttons ------------------------- */}
         {updatedObj.delivery === true 
@@ -142,11 +142,11 @@ export const EditOrderForm = ({ order, setUpdatedObj, updatedObj }) => {
         {updatedObj.orderPizzas?.map(pizza => {
             pizzaCount++;
             return (
-                <fieldset key={pizza.id} className="form-control">
+                <div key={pizza.id} className="form-control">
                 <h5>Pizza {pizzaCount}</h5>
                     <EditPizza index={pizzaCount - 1} updatedObj={updatedObj} setUpdatedObj={setUpdatedObj}/>
                     <EditToppings index={pizzaCount - 1} updatedObj={updatedObj} setUpdatedObj={setUpdatedObj}/>
-                </fieldset>
+                </div>
             )
         })}
  

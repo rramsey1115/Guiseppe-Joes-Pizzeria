@@ -35,11 +35,11 @@ export const CompleteOrderForm = ({order}) => {
 
     : <div className="complete">
         <div className="complete-header"> 
-            <h4>Complete Order Form</h4>
+            <h4 style={{textDecoration:'underline'}}>Complete Order</h4>
         </div>
         <form className="complete-form">
             {order.delivery === true 
-            ?   <fieldset className="form-control">
+            ?   <fieldset className="complete-form-control">
                     <h5>Delivery Driver</h5>
                     <select 
                         id="driver-dropdown"
@@ -61,7 +61,7 @@ export const CompleteOrderForm = ({order}) => {
                     </select>
                 </fieldset>
             : null}
-            <fieldset className="form-control">
+            <fieldset className="complete-form-control">
                 <h5>Tip</h5> <h5>$
                 <input  
                     className="tip-input"
