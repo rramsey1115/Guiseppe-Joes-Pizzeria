@@ -8,10 +8,10 @@ export const CreatePizza = ({ newOrder, setNewOrder, pizzaCount }) => {
     const [toppings, setToppings] = useState([]);
 
     useEffect(() => {
-        getCheeses(setCheeses);
-        getSauces(setSauces);
-        getSizes(setSizes);
-        getToppings(setToppings);
+        getCheeses().then(setCheeses);
+        getSauces().then(setSauces);
+        getSizes().then(setSizes);
+        getToppings().then(setToppings);
     }, []);
 
 return (
@@ -29,7 +29,7 @@ return (
             name="size"
         >
             <option value={0}>Pizza Size</option>
-        {sizes.map(s => { return( 
+        {sizes?.map(s => { return( 
             <option 
                 key={s.id} 
                 value={s.id}
